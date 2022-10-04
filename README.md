@@ -1,2 +1,1 @@
-# pricey
-Pricing game
+Pricey
