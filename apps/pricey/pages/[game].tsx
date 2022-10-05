@@ -95,7 +95,7 @@ const Page: NextPage<{game: Game}> = ({game}) => {
                         </div>
                     </div>                               
                 
-                    <NormalProduct product={game.normalProduct}/>                            
+                    <NormalProduct product={game.normalProduct}/>    
                 </div>
             )}
         </div>        
@@ -140,7 +140,7 @@ export const NormalProduct: FC<NormalProductProps> = ({product}) => {
                 {/* <div>
                     {product.seller}
                 </div> */}
-                    Click to get price
+                Click to see price on Amazon.
                 {/* <div>
                     ${product.price}
                 </div>             */}
@@ -153,10 +153,8 @@ export const NormalProduct: FC<NormalProductProps> = ({product}) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const games = (await import("../data/games.json")).default;
-
+    const games = (await import('../data/games.json')).default;
     // console.log(games);
-
     const paths = games.map(x => {
         // console.log(x);
         return {
@@ -165,21 +163,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
         } 
     }});
 
-    console.log(paths);
+    // console.log(paths);
     
     return { paths, fallback: true };
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    console.log('get static funasdokfasdlkfnalskdf')
     if (!params) {
         return { notFound: true };
     }
-    console.log(params);
+    // console.log(params);
     const { game : gameId } = params;
     //  console.log(gameId);
 
-    const games = (await import("../data/games.json")).default;
+    const games = (await import('../data/games.json')).default;
 
     //  console.log(games);
     const game = games.find(x => {
@@ -188,8 +185,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         return x.id === gameId;
     });
     
-    console.log('thahkldflkhadsflhkadsflhkadslhkfdsahlkldhaksflk;jasdflkasdlkfasdlkfldksfj');
-    console.log(game);
     return game ? { props: { game } } : { notFound: true };
     
     // return { paths: games.map(x => x.id), fallback: true }

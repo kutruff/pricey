@@ -20,7 +20,7 @@
     "doctoc": "~2.2.0",
     "eslint": "~8.21.0",
     "eslint-plugin-import": "~2.26.0",
-    "typescript": "~4.8.2",
+    "typescript": "~4.8.4",
     "@jsdevtools/version-bump-prompt": "6.1.0"
   }
 }
