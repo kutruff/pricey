@@ -3,10 +3,16 @@ import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useState, FC } from 'react';
+import { useState, FC, useMemo } from 'react';
 import { Game, Product } from '../app';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { Button, FormControl, FormGroup, TextField } from '@mui/material';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
 
 const parseGuess = (value: string) => {
     const price = Number.parseFloat(value);
@@ -23,8 +29,15 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
     const [score, setScore] = useState(0);
     const [totalGuesses, setTotalGuesses] = useState(0);
 
+    const formatter = useMemo(() => new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    }), []);
     const handleChange = (event: any) => {
         const value = event.target.value;
+        console.log(value);
         setCurrentGuess(value);
         setHasError(value && !parseGuess(value));
     };
@@ -66,35 +79,45 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                 </Paper>
             </Grid>
             <Grid item>
-                <Paper>
-                    <Grid container justifyContent="center">
-                        <Grid item>
-                            <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
-                        </Grid>
+                <Grid container justifyContent="center">
+                    <Grid item>
+                        <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
                     </Grid>
-                </Paper>
+                </Grid>
             </Grid>
             <Grid item>
                 {!hasWon ? (
                     <Paper>
-                        {guesses.length === 0 ? (
-                            <Typography>Guess the price within {marginOfErrorToWin}%!</Typography>
-                        ) : (
-                            <div>{guessDifference > 0 ? 'Price is lower.' : 'Price is higher.'}</div>
-                        )}
-                        <form onSubmit={handleSubmit}>
-                            <label>
-                                Price: {' '}
-                                <input type="text" value={currentGuess} onChange={handleChange} />
-                            </label>
-                            <input type="submit" value="Guess Price" />
-                        </form>
-                        <div>
+                        <Typography variant='body2'>
+                            {guesses.length === 0 ?
+                                `Guess the ridiculous price within ${marginOfErrorToWin}%!`
+                                : guessDifference > 0 ? 'Price is lower.' : 'Price is higher.'
+                            }
+                        </Typography>
+                        <Grid container alignItems="center" sx={{ mt: 1 }}>
+                            <Grid item>
+                                <FormControl error={hasError} size='small'>
+                                    <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+                                    <OutlinedInput
+                                        id="outlined-adornment-amount"
+                                        value={currentGuess}
+                                        onChange={handleChange}
+                                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                        label="Amount"
+                                    />
+                                </FormControl>
+                            </Grid>
+                            <Grid item>
+                                <Button variant='contained' onClick={handleSubmit} >Guess</Button>
+                            </Grid>
+                        </Grid>
+
+                        <List>
                             {guesses.map((x, index) =>
-                                <div key={index}>
-                                    {x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} ${x}
-                                </div>)}
-                        </div>
+                                <ListItem disablePadding key={index}>
+                                    {x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {formatter.format(x)}
+                                </ListItem>)}
+                        </List>
                     </Paper>
                 ) : (
                     <div>
@@ -115,7 +138,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                     </div>
                 )}
             </Grid>
-        </Grid>
+        </Grid >
     );
 };
 
