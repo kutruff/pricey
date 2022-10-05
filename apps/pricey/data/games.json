@@ -1,0 +1,44 @@
+[
+    {
+        "id": "neimanmarcus-gold-mirror",
+        "date": "2022-10-4T00:00:00.00Z",
+        "title": "Mirror",
+        "expensiveProduct": {
+            "name": "Emma Wall Mirror",
+            "seller": "Neiman Marcus",
+            "sellerId": "neimanmarcus",
+            "storePageUrl": "https://www.neimanmarcus.com/p/emma-wall-mirror-prod252460030",
+            "imageUrl": "https://media.neimanmarcus.com/f_auto,q_auto:good,ar_4:5,c_fill,dpr_1.0,w_790/01/nm_4340607_100602_m",
+            "price": 995.00
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Gold Round Wall Mirror",
+            "storePageUrl": "https://a.co/d/8vihJrw",
+            "imageUrl": "https://m.media-amazon.com/images/I/61lsVC+6g8L._AC_SX679_.jpg",
+            "price": 59.99
+        }
+    },
+    {
+        "id": "tiffany-pool-balls",
+        "date": "2022-10-5T00:00:00.00Z",
+        "title": "Pool Balls",
+        "expensiveProduct": {
+            "name": "Wood Pool Triangle and Ball Set",
+            "seller": "Tiffany & Co.",
+            "sellerId": "tiffany",
+            "storePageUrl": "https://www.tiffany.com/accessories/games-novelties/everyday-objects-wood-pool-triangle-and-ball-set-66942066/",
+            "imageUrl": "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/everyday-objectswood-pool-triangle-and-ball-set-66942066_1002539_AV_1.jpg?&op_usm=1.5,1.0,6.0&defaultImage=NoImageAvailableInternal&&defaultImage=NoImageAvailableInternal&fmt=webp",
+            "price": 2000
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Normal pool balls",
+            "storePageUrl": "https://www.amazon.com/dp/B00CEQXPBE?ref_=cm_sw_r_cp_ud_dp_XSRY22R4R7KJ88NSXMJ8",
+            "imageUrl": "https://m.media-amazon.com/images/I/81TE1o1-yCL._AC_SX679_.jpg",
+            "price": 26.99
+        }
+    }
+]
