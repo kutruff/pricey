@@ -1,5 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import { useState, FC } from 'react';
 import { Game, Product } from '../app';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 const parseGuess = (value: string) => {
     const price = Number.parseFloat(value);
@@ -7,7 +14,7 @@ const parseGuess = (value: string) => {
 };
 const marginOfErrorToWin = 15;
 
-const GameComponent : FC<{ game: Game }> = ({ game }) => {
+const GameComponent: FC<{ game: Game }> = ({ game }) => {
     const [guesses, setGuesses] = useState<number[]>([]);
     const [currentGuess, setCurrentGuess] = useState('');
     const [hasError, setHasError] = useState(false);
@@ -48,54 +55,67 @@ const GameComponent : FC<{ game: Game }> = ({ game }) => {
     }
 
     return (
-        <div>
-            <div>
-                {game.title}
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <img style={{ maxHeight: 200 }} src={game.expensiveProduct.imageUrl} />
-            </div>
-            {!hasWon ? (
-                <div>
-                    {guesses.length === 0 ? (
-                        <div>Guess the price within {marginOfErrorToWin}%!</div>
-                    ) : (
-                        <div>{guessDifference > 0 ? 'Price is lower.' : 'Price is higher.'}</div>
-                    )}
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            Price: {' '}
-                            <input type="text" value={currentGuess} onChange={handleChange} />
-                        </label>
-                        <input type="submit" value="Guess Price" />
-                    </form>
-                    <div>
-                        {guesses.map((x, index) =>
-                            <div key={index}>
-                                {x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} ${x}
-                            </div>)}
-                    </div>
-                </div>
-            ) : (
-                <div>
-                    <div>
-                        <a href={game.expensiveProduct.storePageUrl}>{game.expensiveProduct.seller}</a>
-                        <div>{game.expensiveProduct.name}</div>
-                    </div>
-
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid container
+            spacing={1}
+            direction="column"
+            justifyContent="center"
+            columns={1}>
+            <Grid item>
+                <Paper>
+                    <Typography variant="h6" align='center'>{game.title}</Typography>
+                </Paper>
+            </Grid>
+            <Grid item>
+                <Paper>
+                    <Grid container justifyContent="center">
+                        <Grid item>
+                            <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
+                        </Grid>
+                    </Grid>
+                </Paper>
+            </Grid>
+            <Grid item>
+                {!hasWon ? (
+                    <Paper>
+                        {guesses.length === 0 ? (
+                            <Typography>Guess the price within {marginOfErrorToWin}%!</Typography>
+                        ) : (
+                            <div>{guessDifference > 0 ? 'Price is lower.' : 'Price is higher.'}</div>
+                        )}
+                        <form onSubmit={handleSubmit}>
+                            <label>
+                                Price: {' '}
+                                <input type="text" value={currentGuess} onChange={handleChange} />
+                            </label>
+                            <input type="submit" value="Guess Price" />
+                        </form>
                         <div>
-                            <h3>Close enough!</h3>
-                            <div>Actual price: ${game.expensiveProduct.price}</div>
-                            <GameResults guesses={guesses} />
+                            {guesses.map((x, index) =>
+                                <div key={index}>
+                                    {x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} ${x}
+                                </div>)}
                         </div>
-                    </div>
+                    </Paper>
+                ) : (
+                    <div>
+                        <div>
+                            <a href={game.expensiveProduct.storePageUrl}>{game.expensiveProduct.seller}</a>
+                            <div>{game.expensiveProduct.name}</div>
+                        </div>
 
-                    <NormalProduct product={game.normalProduct} />
-                </div>
-            )}
-        </div>
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <div>
+                                <h3>Close enough!</h3>
+                                <div>Actual price: ${game.expensiveProduct.price}</div>
+                                <GameResults guesses={guesses} />
+                            </div>
+                        </div>
+
+                        <NormalProduct product={game.normalProduct} />
+                    </div>
+                )}
+            </Grid>
+        </Grid>
     );
 };
 

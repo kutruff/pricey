@@ -12,9 +12,9 @@ import { AppToolbar } from '../components/AppToolbar';
 import { Game } from '../app';
 import GameComponent from '../components/GameComponent';
 
-const pageContainerStyle = css({
-  height: '100vh',
-}, flexVertical);
+// const pageContainerStyle = css({
+//   height: '100vh',
+// }, flexVertical);
 
 
 interface HomeProps {
@@ -22,29 +22,19 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ game }) => {
-  console.log('home');
-  console.log(game);
   return (
     <div>
-      <Head>
-        <title>Pricey</title>
-        <meta name="description" content="Price guessing game" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Box css={pageContainerStyle}>
-          <AppToolbar onChangeTheme={() => {
-            //TODO: implement      
-          }} />
-          <Toolbar />
-          <Box css={flexGrowAndFlexChildrenVertical} sx={{ overflowY: 'auto' }}>
-            <Container css={flexGrowAndFlexChildrenVertical}>
-              <GameComponent game={game} />
-            </Container>
-          </Box>
-        </Box>
+        {/* <Box css={pageContainerStyle}> */}
+        <AppToolbar onChangeTheme={() => {
+          //TODO: implement      
+        }} />
+        <Toolbar />
+        <Container>
+          <GameComponent game={game} />
+        </Container>
+        {/* </Box> */}
       </ThemeProvider>
     </div>
   );
@@ -60,7 +50,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // const { game: gameId } = params;
   const now = new Date().getTime();
-  console.log(now);
+  // console.log(now);
   const games = (await import('../data/games.json')).default as Game[];
 
   // games.sort((a, b) => {
@@ -74,7 +64,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   for (const current of games) {
     const currentGameTime = new Date(current.date).getTime();
-    console.log(current.date, currentGameTime);
+    // console.log(current.date, currentGameTime);
     if (currentGameTime <= now && (!closestGame || currentGameTime > closestGameTime)) {
       closestGame = current;
       closestGameTime = currentGameTime;
@@ -84,7 +74,7 @@ export const getStaticProps: GetStaticProps = async () => {
   if (!closestGame) {
     closestGame = games[games.length - 1];
   }
-  console.log(closestGame);
+  // console.log(closestGame);
 
   return closestGame ? { props: { game: closestGame } } : { notFound: true };
 };
