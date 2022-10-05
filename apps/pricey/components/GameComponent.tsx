@@ -178,9 +178,14 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                     </Grid>
                     <Grid item>
                         <Paper>
-                            <Typography variant="h6">All you need</Typography>
-                            <Typography variant="caption">Click to see on Amazon</Typography>
+                            <Typography align="center" variant="h6">What normal people get.</Typography>
+                            <Typography align="center" variant="caption">Click to see on Amazon</Typography>
                             <NormalProduct product={game.normalProduct} />
+                        </Paper>
+                    </Grid>
+                    <Grid container item justifyContent="center">
+                        <Paper>
+                            <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See expensive version</Button></Link>
                         </Paper>
                     </Grid>
                 </>
