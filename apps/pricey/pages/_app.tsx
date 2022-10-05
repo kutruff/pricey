@@ -2,12 +2,13 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { CacheProvider, EmotionCache, ThemeProvider } from '@emotion/react';
-import { CssBaseline, Toolbar } from '@mui/material';
-import { Container } from '@mui/system';
+import { CssBaseline, Grid, Paper, Toolbar, Typography } from '@mui/material';
+import { Box, Container } from '@mui/system';
 import { AppToolbar } from '../components/AppToolbar';
 import GameComponent from '../components/GameComponent';
 import theme from '../styling/theme';
 import createEmotionCache from '../styling/createEmotionCache';
+import Link from 'next/link';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -26,16 +27,24 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {/* <Box css={pageContainerStyle}> */}
         <AppToolbar onChangeTheme={() => {
           //TODO: implement      
-        }} />        
-        <Container maxWidth='sm'>
-          <Component {...pageProps} />
-        </Container>
-        {/* </Box> */}
+        }} />
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Toolbar />
+          <Container maxWidth='sm' sx={{ flexGrow: 1 }}>
+            <Component {...pageProps} />
+          </Container>
+          <Paper >
+            <Grid container justifyContent='space-between' flexWrap={'nowrap'}>
+              <Grid item><Typography variant='subtitle2' color={'gray'}>Copyright 2022 by Kutruff LLC</Typography></Grid>
+              <Grid item><Typography variant='subtitle2'><Link href="/privacy">Privacy Policy</Link></Typography></Grid>
+              <Grid item><Typography variant='subtitle2'><Link href="/terms">Terms</Link></Typography></Grid>
+            </Grid>
+          </Paper>
+        </Box>
       </ThemeProvider>
-    </CacheProvider>
+    </CacheProvider >
   );
 }
 

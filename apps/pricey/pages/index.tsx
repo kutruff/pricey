@@ -23,20 +23,7 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ game }) => {
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {/* <Box css={pageContainerStyle}> */}
-        <AppToolbar onChangeTheme={() => {
-          //TODO: implement      
-        }} />
-        <Toolbar />
-        <Container>
-          <GameComponent game={game} />
-        </Container>
-        {/* </Box> */}
-      </ThemeProvider>
-    </div>
+    <GameComponent game={game} />
   );
 };
 
