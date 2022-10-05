@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
         <AppToolbar onChangeTheme={() => {
           //TODO: implement      
         }} />        
-        <Container>
+        <Container maxWidth='sm'>
           <Component {...pageProps} />
         </Container>
         {/* </Box> */}

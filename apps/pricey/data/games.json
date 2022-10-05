@@ -1,7 +1,7 @@
 [
     {
         "id": "neimanmarcus-gold-mirror",
-        "date": "2022-10-04T00:00:00.00Z",
+        "date": "2022-10-03T00:00:00.00Z",
         "title": "Mirror",
         "expensiveProduct": {
             "name": "Emma Wall Mirror",
@@ -22,8 +22,8 @@
     },
     {
         "id": "tiffany-pool-balls",
-        "date": "2022-10-05T00:00:00.00Z",
-        "title": "Pool Balls",
+        "date": "2022-10-04T00:00:00.00Z",
+        "title": "Tiffany Pool Balls",
         "expensiveProduct": {
             "name": "Wood Pool Triangle and Ball Set",
             "seller": "Tiffany & Co.",
@@ -39,6 +39,69 @@
             "storePageUrl": "https://www.amazon.com/dp/B00CEQXPBE?ref_=cm_sw_r_cp_ud_dp_XSRY22R4R7KJ88NSXMJ8",
             "imageUrl": "https://m.media-amazon.com/images/I/81TE1o1-yCL._AC_SX679_.jpg",
             "price": 26.99
+        }
+    },
+    {
+        "id": "hermes-travel-tag",
+        "date": "2022-10-05T00:00:00.00Z",
+        "title": "Hermes R.M.S travel tag",
+        "expensiveProduct": {
+            "name": "R.M.S travel tag",
+            "seller": "Hermes",
+            "sellerId": "hermes",
+            "storePageUrl": "https://www.hermes.com/us/en/product/r.m.s-travel-tag-H083423CK71/",
+            "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/r.m.s-travel-tag--083423CK71-worn-1-0-0-800-800_b.jpg",
+            "price": 570
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "4 Pack Leather Luggage Travel Bag Tags",
+            "storePageUrl": "https://www.amazon.com/dp/B07VVNCMKH?ref_=cm_sw_r_cp_ud_dp_TCV135NE5SKPR5EHGDQ9",
+            "imageUrl": "https://m.media-amazon.com/images/I/91nM4bBL--S._AC_UX679_.jpg",
+            "price": 9.99
+        }
+    },
+    {
+        "id": "tiffany-table-tennis",
+        "date": "2022-10-06T00:00:00.00Z",
+        "title": "Tiffany Pool Balls",
+        "expensiveProduct": {
+            "name": "Leather and Walnut Table Tennis Paddles",
+            "seller": "Tiffany & Co.",
+            "sellerId": "tiffany",
+            "storePageUrl": "https://www.tiffany.com/accessories/games-novelties/everyday-objects-leather-and-walnut-table-tennis-paddles-60561737/",
+            "imageUrl": "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/everyday-objectsleather-and-walnut-table-tennis-paddles-60561737_975115_ED.jpg?&op_usm=1.5,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&&defaultImage=NoImageAvailableInternal&fmt=webp",
+            "price": 720
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Franklin Sports Ping Pong Paddle Set",
+            "storePageUrl": "https://a.co/d/23ZETY8",
+            "imageUrl": "https://m.media-amazon.com/images/I/91bWnmMT-SL._AC_SX679_.jpg",
+            "price": 12.99
+        }
+    },
+    {
+        "id": "saks-dog-jacket",
+        "date": "2022-10-07T00:00:00.00Z",
+        "title": "Saks Fifth Avenue Dog Jacket",
+        "expensiveProduct": {
+            "name": "Biker Faux Leather Dog Jacket",
+            "seller": "Saks Fifth Avenue",
+            "sellerId": "saks",
+            "storePageUrl": "https://www.saksfifthavenue.com/product/moschino-biker-faux-leather-dog-jacket-0400015291868.html?dwvar_0400015291868_color=BLACK",
+            "imageUrl": "https://image.s5a.com/is/image/saks/0400015291868_A1?wid=984&hei=1312&qlt=90&resMode=sharp2&op_usm=0.9,1.0,8,0",
+            "price": 645
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Dog Leather Motorcycle Jacket",
+            "storePageUrl": "https://a.co/d/80iSWRT",
+            "imageUrl": "https://m.media-amazon.com/images/I/51crH0Dk-iL._AC_SX466_.jpg",
+            "price": 22.99
         }
     }
 ]

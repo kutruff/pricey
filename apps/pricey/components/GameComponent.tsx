@@ -7,7 +7,8 @@ import { useState, FC, useMemo } from 'react';
 import { Game, Product } from '../app';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Button, FormControl, FormGroup, TextField } from '@mui/material';
+import { Button, Card, CardActionArea, CardContent, CardMedia, FormControl, FormGroup, TextField } from '@mui/material';
+import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -29,6 +30,8 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
     const [score, setScore] = useState(0);
     const [totalGuesses, setTotalGuesses] = useState(0);
 
+    const [hasShared, setHasShared] = useState(false);
+
     const formatter = useMemo(() => new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -41,6 +44,12 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
         setCurrentGuess(value);
         setHasError(value && !parseGuess(value));
     };
+
+    const onShareClick = () => {
+        navigator.clipboard.writeText(getShareText(guesses));
+        setHasShared(true);
+    };
+
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -74,70 +83,108 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
             justifyContent="center"
             columns={1}>
             <Grid item>
-                <Paper>
-                    <Typography variant="h6" align='center'>{game.title}</Typography>
-                </Paper>
-            </Grid>
-            <Grid item>
-                <Grid container justifyContent="center">
-                    <Grid item>
-                        <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
+                <Card sx={{ mt: 1 }}>
+                    <Grid sx={{ mt: 1 }} container justifyContent="center">
+                        <Grid item>
+                            <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
+                        </Grid>
                     </Grid>
-                </Grid>
+                    <CardContent sx={{ mt: 0, '&:last-child': { pb: 0 } }}>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            {game.expensiveProduct.seller}
+                        </Typography>
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            {game.expensiveProduct.name}
+                        </Typography>
+                    </CardContent>
+                </Card>
             </Grid>
-            <Grid item>
-                {!hasWon ? (
+
+            {!hasWon ? (
+                <Grid item>
                     <Paper>
-                        <Typography variant='body2'>
+                        <Typography align="center" variant='body1'>
                             {guesses.length === 0 ?
                                 `Guess the ridiculous price within ${marginOfErrorToWin}%!`
                                 : guessDifference > 0 ? 'Price is lower.' : 'Price is higher.'
                             }
                         </Typography>
-                        <Grid container alignItems="center" sx={{ mt: 1 }}>
-                            <Grid item>
-                                <FormControl error={hasError} size='small'>
-                                    <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-                                    <OutlinedInput
-                                        id="outlined-adornment-amount"
-                                        value={currentGuess}
-                                        onChange={handleChange}
-                                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                        label="Amount"
-                                    />
-                                </FormControl>
-                            </Grid>
-                            <Grid item>
-                                <Button variant='contained' onClick={handleSubmit} >Guess</Button>
-                            </Grid>
-                        </Grid>
 
+                        <form onSubmit={handleSubmit}>
+                            <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'nowrap', gap: 1 }}>
+                                <Box sx={{ flex: 1 }} >
+                                    <FormControl fullWidth error={hasError} size='small'>
+                                        <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+                                        <OutlinedInput
+                                            id="outlined-adornment-amount"
+                                            value={currentGuess}
+                                            onChange={handleChange}
+                                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                            label="Amount"
+                                        />
+                                    </FormControl>
+                                </Box>
+                                <Box sx={{ flexShrink: 1 }} >
+                                    <Button variant='contained' onClick={handleSubmit} >Guess</Button>
+                                </Box>
+                            </Box>
+                        </form>
                         <List>
                             {guesses.map((x, index) =>
                                 <ListItem disablePadding key={index}>
-                                    {x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {formatter.format(x)}
+                                    <Typography variant='caption' color='secondary'>{x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {formatter.format(x)}</Typography>
                                 </ListItem>)}
                         </List>
                     </Paper>
-                ) : (
-                    <div>
-                        <div>
-                            <a href={game.expensiveProduct.storePageUrl}>{game.expensiveProduct.seller}</a>
-                            <div>{game.expensiveProduct.name}</div>
-                        </div>
+                </Grid>
+            ) : (
+                <>
+                    <Grid item>
+                        <Paper>
+                            {/* <div>
+                            <Link href={game.expensiveProduct.storePageUrl}>{game.expensiveProduct.seller}</Link>
+                            <Typography>{game.expensiveProduct.name}</Typography>
+                        </div> */}
+                            {/* 
+                            <Grid container justifyContent="center">
+                                <Grid item>
+                                    <Typography align='center' variant='h5'>Close enough!</Typography>
+                                    <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
+                                    <GuessRange guesses={guesses} />
+                                    <Grid container justifyContent="center">
+                                        <Grid item>
+                                            <GameResults guesses={guesses} />
+                                        </Grid>
 
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <div>
-                                <h3>Close enough!</h3>
-                                <div>Actual price: ${game.expensiveProduct.price}</div>
-                                <GameResults guesses={guesses} />
-                            </div>
-                        </div>
+                                    </Grid>
+                                </Grid>
+                            </Grid> */}
 
-                        <NormalProduct product={game.normalProduct} />
-                    </div>
-                )}
-            </Grid>
+                            <Box style={{ display: 'flex', flexDirection: 'column' }} justifyContent="center">
+
+                                <Typography align='center' variant='h5'>Close enough!</Typography>
+                                <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
+                                <GuessRange guesses={guesses} />
+                                <Box style={{ display: 'flex' }} justifyContent="center">
+                                    <GameResults guesses={guesses} />
+                                </Box>
+                                <Box style={{ display: 'flex' }} justifyContent="center">
+                                    <Button fullWidth={false} variant='contained' onClick={onShareClick}>{hasShared ? 'copied' : 'share'}</Button>
+                                </Box>
+                            </Box>
+
+                            {/* <NormalProduct product={game.normalProduct} /> */}
+                        </Paper>
+                    </Grid>
+                    <Grid item>
+                        <Paper>
+                            <Typography variant="h6">All you need</Typography>
+                            <Typography variant="caption">Click to see on Amazon</Typography>
+                            <NormalProduct product={game.normalProduct} />
+                        </Paper>
+                    </Grid>
+                </>
+            )}
         </Grid >
     );
 };
@@ -149,19 +196,37 @@ interface GameResultsProps {
 }
 
 export const GameResults: FC<GameResultsProps> = ({ guesses }) => {
+    const squares = [];
+    for (let i = 0; i < guesses.length - 1; i++) {
+        squares.push(<Box key={i}>🟥</Box>);
+    }
+    squares.push(<Box key={guesses.length - 1}>🟩</Box>);
+    return (
+        <Box style={{ display: 'inline-flex', maxWidth: 'fit-content' }}>{squares}</Box>
+    );
+};
+
+function getShareText(guesses: number[]) {
+    let results = '';
+    for (let i = 0; i < guesses.length - 1; i++) {
+        results += '🟥';
+        if (i < guesses.length - 2) {
+            results += ' ';
+        }
+    }
+
+    results += '🟩';
+
+    const shareText = `Pricey: ${results} https://pricey.wtf`;
+    return shareText;
+}
+
+export const GuessRange: FC<GameResultsProps> = ({ guesses }) => {
     const minGuess = guesses.reduce((acc, current) => Math.min(acc, current), Number.MAX_VALUE);
     const maxGuess = guesses.reduce((acc, current) => Math.max(acc, current), Number.MIN_VALUE);
 
-    const squares = [];
-    for (let i = 0; i < guesses.length - 1; i++) {
-        squares.push(<div key={i}>🟥</div>);
-    }
-    squares.push(<div key={guesses.length}>🟩</div>);
     return (
-        <div>
-            <div style={{ display: 'flex' }}>{squares}</div>
-            <div>guess range: ${minGuess} - ${maxGuess}</div>
-        </div>
+        <Typography align='center' color="text.secondary" variant='caption'>guess range: ${minGuess} - ${maxGuess}</Typography>
     );
 };
 
@@ -171,17 +236,31 @@ export interface NormalProductProps {
 
 export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
     return (
-        <div >
-            <h2>Normal product</h2>
-            <a href={product.storePageUrl}>
-                <div>
-                    {product.name}
-                </div>
-                Click to see price on Amazon.
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <img style={{ maxHeight: 200 }} src={product.imageUrl} />
-                </div>
-            </a>
-        </div>
+        // <div >
+        //     <h2>Normal product</h2>
+        //     <a href={product.storePageUrl}>
+        //         <div>
+        //             {product.name}
+        //         </div>
+        //         Click to see price on Amazon.
+        //         <div style={{ display: 'flex', justifyContent: 'center' }}>
+        //             <img style={{ maxHeight: 200 }} src={product.imageUrl} />
+        //         </div>
+        //     </a>
+        // </div>
+        <Card sx={{ mt: 1 }} elevation={2}>
+            <Link href={product.storePageUrl}>
+                <Grid sx={{ mt: 1 }} container justifyContent="center">
+                    <Grid item>
+                        <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={product.imageUrl} />
+                    </Grid>
+                </Grid>
+                <CardContent sx={{ mt: 0, '&:last-child': { pb: 0 } }}>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {product.name}
+                    </Typography>
+                </CardContent>
+            </Link>
+        </Card >
     );
 };
