@@ -54,7 +54,7 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
                 {/*TODO: navigation: <Link color="inherit" underline="none" href="/" onClick={navigate}> */}
                 {/* <Link color="inherit" underline="none" to="/"> */}
                 <Typography variant="h1" css={titleTypographyStyle}>
-                    Planner
+                    Pricey
                 </Typography>
                 {/* </Link> */}
                 <span style={{ flexGrow: 1 }} />

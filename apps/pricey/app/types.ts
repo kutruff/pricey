@@ -9,7 +9,7 @@ export interface Product {
 
 export interface Game {
     id: string,
-    date: Date,
+    date: string,
     title: string,
     expensiveProduct: Product,
     normalProduct: Product,

@@ -1,7 +1,7 @@
 [
     {
         "id": "neimanmarcus-gold-mirror",
-        "date": "2022-10-4T00:00:00.00Z",
+        "date": "2022-10-04T00:00:00.00Z",
         "title": "Mirror",
         "expensiveProduct": {
             "name": "Emma Wall Mirror",
@@ -22,7 +22,7 @@
     },
     {
         "id": "tiffany-pool-balls",
-        "date": "2022-10-5T00:00:00.00Z",
+        "date": "2022-10-05T00:00:00.00Z",
         "title": "Pool Balls",
         "expensiveProduct": {
             "name": "Wood Pool Triangle and Ball Set",
