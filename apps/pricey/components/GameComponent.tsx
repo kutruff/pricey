@@ -176,22 +176,22 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                             {/* <NormalProduct product={game.normalProduct} /> */}
                         </Paper>
                     </Grid>
-                    <Grid item>
-                        <Paper>
-                            <Typography align="center" variant="h6">What normal people get.</Typography>
-                            <Typography align="center" variant="caption">Click to see on Amazon</Typography>
-                            <NormalProduct product={game.normalProduct} />
-                        </Paper>
-                    </Grid>
                     <Grid container item justifyContent="center" >
                         <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: 5 }} justifyContent="center">
                             <Paper>
-                                <Link href={game.normalProduct.storePageUrl}><Button variant="outlined" color="secondary" >See Cheaper Amazon version </Button></Link>
+                                <Link href={game.normalProduct.storePageUrl}><Button variant="outlined" color="secondary" >See Cheaper Amazon alternative </Button></Link>
                             </Paper>
                             <Paper>
-                                <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See expensive version</Button></Link>
+                                <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See original</Button></Link>
                             </Paper>
                         </Box>
+                    </Grid>
+                    <Grid item>
+                        <Paper>
+                            <Typography align="center" variant="h6">What normal people get:</Typography>
+                            <Typography align="center" variant="caption">Click to see on Amazon</Typography>
+                            <NormalProduct product={game.normalProduct} />
+                        </Paper>
                     </Grid>
 
                 </>
