@@ -183,11 +183,17 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                             <NormalProduct product={game.normalProduct} />
                         </Paper>
                     </Grid>
-                    <Grid container item justifyContent="center">
-                        <Paper>
-                            <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See expensive version</Button></Link>
-                        </Paper>
+                    <Grid container item justifyContent="center" >
+                        <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: 5 }} justifyContent="center">
+                            <Paper>
+                                <Link href={game.normalProduct.storePageUrl}><Button variant="outlined" color="secondary" >See Cheaper Amazon version </Button></Link>
+                            </Paper>
+                            <Paper>
+                                <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See expensive version</Button></Link>
+                            </Paper>
+                        </Box>
                     </Grid>
+
                 </>
             )}
         </Grid >
