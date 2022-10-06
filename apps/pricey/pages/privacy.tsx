@@ -8,6 +8,10 @@ const PrivacyPolicy: NextPage = ({ }) => {
 
       <p>At Pricey, accessible from https://pricey.wtf, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Pricey and how we use it.</p>
 
+      <h2>Contact us</h2>
+
+      <p>You may contact us about this policy at kutruffllc@proton.me</p>
+
       <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 
       <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Pricey. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the <a href="https://www.privacypolicygenerator.info/">Free Privacy Policy Generator</a>.</p>
@@ -95,12 +99,6 @@ const PrivacyPolicy: NextPage = ({ }) => {
       <h2>Children&apos;s Information</h2>
 
       <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
-
-      <p>Pricey does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
-
-      <h2>Contact us</h2>
-
-      <p>You may contact us about this policy at kutruffllc@proton.me</p>
 
       <p>Pricey does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
 
