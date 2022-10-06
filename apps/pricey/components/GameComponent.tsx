@@ -192,7 +192,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                     <Grid container item justifyContent="center" >
                         <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: 5 }} justifyContent="center">
                             <Paper>
-                                <Thing href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Basic Amazon Alternative</Button></Thing>
+                                <Thing href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Alternative on Amazon</Button></Thing>
                             </Paper>
                             <Paper>
                                 <Thing href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See {game.expensiveProduct.seller}</Button></Thing>
@@ -251,6 +251,7 @@ function getShareText(actualPrice: number, guesses: number[]) {
     const shareText = `Pricey: ${results} https://pricey.wtf`;
     return shareText;
 }
+
 function getGuessSquares(actualPrice: number, guesses: number[]) {
     const results: string[] = [];
     for (let i = 0; i < guesses.length - 1; i++) {
