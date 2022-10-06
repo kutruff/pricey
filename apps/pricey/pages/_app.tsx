@@ -9,6 +9,10 @@ import GameComponent from '../components/GameComponent';
 import theme from '../styling/theme';
 import createEmotionCache from '../styling/createEmotionCache';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import * as ga from '../analytics';
+import { useEffect } from 'react';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -18,6 +22,24 @@ export interface MyAppProps extends AppProps {
 }
 //TODO: setup emotion caching and server thing for _app and _document: https://github.com/mui/material-ui/blob/master/examples/nextjs/pages/_app.js
 function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: MyAppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      ga.pageview(url);
+    };
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>

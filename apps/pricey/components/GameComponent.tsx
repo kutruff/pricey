@@ -102,8 +102,6 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
         return <div>404</div>;
     }
 
-    const containerRef = useRef(null);
-
     return (
         <Grid container
             spacing={1}
