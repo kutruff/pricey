@@ -1,19 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { useState, FC, useMemo } from 'react';
-import { Game, Product } from '../app';
+import { Button, Card, CardContent, FormControl } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Button, Card, CardActionArea, CardContent, CardMedia, FormControl, FormGroup, TextField } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { Game, Product } from '../app';
+
 
 const parseGuess = (value: string) => {
     const price = Number.parseFloat(value);
@@ -21,16 +20,45 @@ const parseGuess = (value: string) => {
 };
 const marginOfErrorToWin = 15;
 
+export interface State {
+    guesses: number[],
+    storageVersion: number
+}
+
+//You can rev this to force the cached version to be ignored until it is written again.
+const storageVersion = 0;
+
 const GameComponent: FC<{ game: Game }> = ({ game }) => {
-    const [guesses, setGuesses] = useState<number[]>([]);
+    const [state, setState] = useState<State>({ guesses: [], storageVersion });
     const [currentGuess, setCurrentGuess] = useState('');
     const [hasError, setHasError] = useState(false);
-    const [guessDifference, setGuessDifference] = useState(0);
-    const [hasWon, setHasWon] = useState(false);
-    const [score, setScore] = useState(0);
-    const [totalGuesses, setTotalGuesses] = useState(0);
-
     const [hasShared, setHasShared] = useState(false);
+    const [hasInited, setHasInited] = useState(false);
+
+    useEffect(() => {
+        try {
+            const key = `${game.id}-state`;
+            const stored = localStorage.getItem(key);
+            if (stored) {
+                const loadedState = JSON.parse(stored) as State;
+                if (loadedState.storageVersion === storageVersion) {
+                    setState(loadedState);
+                }
+            } else {
+                localStorage.setItem(key, JSON.stringify(state));
+            }
+        } catch { }
+        setHasInited(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (hasInited) {
+            const key = `${game.id}-state`;
+            localStorage.setItem(key, JSON.stringify(state));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [hasInited, state]);
 
     const formatter = useMemo(() => new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -38,39 +66,36 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
         minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
         maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
     }), []);
+
     const handleChange = (event: any) => {
         const value = event.target.value;
-        console.log(value);
+
         setCurrentGuess(value);
         setHasError(value && !parseGuess(value));
     };
 
     const onShareClick = () => {
-        navigator.clipboard.writeText(getShareText(guesses));
+        navigator.clipboard.writeText(getShareText(state.guesses));
         setHasShared(true);
     };
-
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
         const value = parseGuess(currentGuess);
         if (value) {
             setCurrentGuess('');
-            setTotalGuesses(x => x + 1);
-
-            const difference = value - game.expensiveProduct.price;
-            setGuessDifference(difference);
-            const absDifference = Math.abs(difference);
-            const errorAmount = absDifference / game.expensiveProduct.price;
-            const hasWon = errorAmount * 100 < marginOfErrorToWin;
-            setHasWon(hasWon);
-            // if(!hasWon) {
-            //     setScore(x => x + absDifference);
-            // }
-
-            setGuesses([...guesses, value]);
+            setState({ ...state, guesses: [...state.guesses, value] });
         }
     };
+
+    let hasWon = false;
+    let guessDifference = 0;
+    if (state.guesses.length > 0) {
+        guessDifference = state.guesses[state.guesses.length - 1] - game.expensiveProduct.price;
+        const absDifference = Math.abs(guessDifference);
+        const errorAmount = absDifference / game.expensiveProduct.price;
+        hasWon = errorAmount * 100 < marginOfErrorToWin;
+    }
 
     if (!game) {
         return <div>404</div>;
@@ -104,7 +129,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                 <Grid item>
                     <Paper>
                         <Typography align="center" variant='body1'>
-                            {guesses.length === 0 ?
+                            {state.guesses.length === 0 ?
                                 `Guess the ridiculous price within ${marginOfErrorToWin}%!`
                                 : guessDifference > 0 ? 'Price is lower.' : 'Price is higher.'
                             }
@@ -130,7 +155,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                             </Box>
                         </form>
                         <List>
-                            {guesses.map((x, index) =>
+                            {state.guesses.map((x, index) =>
                                 <ListItem disablePadding key={index}>
                                     <Typography variant='caption' color='secondary'>{x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {formatter.format(x)}</Typography>
                                 </ListItem>)}
@@ -141,39 +166,18 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                 <>
                     <Grid item>
                         <Paper>
-                            {/* <div>
-                            <Link href={game.expensiveProduct.storePageUrl}>{game.expensiveProduct.seller}</Link>
-                            <Typography>{game.expensiveProduct.name}</Typography>
-                        </div> */}
-                            {/* 
-                            <Grid container justifyContent="center">
-                                <Grid item>
-                                    <Typography align='center' variant='h5'>Close enough!</Typography>
-                                    <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
-                                    <GuessRange guesses={guesses} />
-                                    <Grid container justifyContent="center">
-                                        <Grid item>
-                                            <GameResults guesses={guesses} />
-                                        </Grid>
-
-                                    </Grid>
-                                </Grid>
-                            </Grid> */}
-
                             <Box style={{ display: 'flex', flexDirection: 'column' }} justifyContent="center">
 
                                 <Typography align='center' variant='h5'>Close enough!</Typography>
                                 <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
-                                <GuessRange guesses={guesses} />
+                                <GuessRange guesses={state.guesses} />
                                 <Box style={{ display: 'flex' }} justifyContent="center">
-                                    <GameResults guesses={guesses} />
+                                    <GameResults guesses={state.guesses} />
                                 </Box>
                                 <Box style={{ display: 'flex' }} justifyContent="center">
                                     <Button fullWidth={false} variant='contained' onClick={onShareClick}>{hasShared ? 'copied' : 'share'}</Button>
                                 </Box>
                             </Box>
-
-                            {/* <NormalProduct product={game.normalProduct} /> */}
                         </Paper>
                     </Grid>
                     <Grid container item justifyContent="center" >
@@ -204,8 +208,6 @@ export default GameComponent;
 
 function getAffiliateLink(link: string) {
     const url = new URL(link);
-
-    // If your expected result is "http://foo.bar/?x=1&y=2&x=42"
     url.searchParams.set('tag', 'kutruffllc-20');
     return url.toString();
 }
@@ -255,18 +257,6 @@ export interface NormalProductProps {
 
 export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
     return (
-        // <div >
-        //     <h2>Normal product</h2>
-        //     <a href={product.storePageUrl}>
-        //         <div>
-        //             {product.name}
-        //         </div>
-        //         Click to see price on Amazon.
-        //         <div style={{ display: 'flex', justifyContent: 'center' }}>
-        //             <img style={{ maxHeight: 200 }} src={product.imageUrl} />
-        //         </div>
-        //     </a>
-        // </div>
         <Card sx={{ mt: 1 }} elevation={2}>
             <Link href={getAffiliateLink(product.storePageUrl)}>
                 <Grid sx={{ mt: 1 }} container justifyContent="center">

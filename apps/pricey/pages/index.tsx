@@ -30,21 +30,9 @@ const Home: NextPage<HomeProps> = ({ game }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  // console.log(params);
-  // if (!params) {
-  //   return { notFound: true };
-  // }
-
-  // const { game: gameId } = params;
   const now = new Date().getTime();
-  // console.log(now);
-  const games = (await import('../data/games.json')).default as Game[];
 
-  // games.sort((a, b) => {
-  //   const aDate = new Date(a.date).getTime();
-  //   const bDate = new Date(b.date).getTime();
-  //   return aDate - bDate;
-  // });
+  const games = (await import('../data/games.json')).default as Game[];
 
   let closestGame: Game | undefined = undefined;
   let closestGameTime = Number.MAX_SAFE_INTEGER;
