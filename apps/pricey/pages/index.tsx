@@ -12,11 +12,6 @@ import { AppToolbar } from '../components/AppToolbar';
 import { Game } from '../app';
 import GameComponent from '../components/GameComponent';
 
-// const pageContainerStyle = css({
-//   height: '100vh',
-// }, flexVertical);
-
-
 interface HomeProps {
   game: Game;
 }

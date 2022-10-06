@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { Button, Card, CardContent, FormControl } from '@mui/material';
+import { Troubleshoot } from '@mui/icons-material';
+import { Button, Card, CardContent, FormControl, Slide } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -10,7 +11,7 @@ import ListItem from '@mui/material/ListItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { Game, Product } from '../app';
 
 
@@ -101,6 +102,8 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
         return <div>404</div>;
     }
 
+    const containerRef = useRef(null);
+
     return (
         <Grid container
             spacing={1}
@@ -183,10 +186,10 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                     <Grid container item justifyContent="center" >
                         <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: 5 }} justifyContent="center">
                             <Paper>
-                                <Link href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Cheaper Amazon alternative </Button></Link>
+                                <Link href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Basic Amazon Alternative</Button></Link>
                             </Paper>
                             <Paper>
-                                <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See original</Button></Link>
+                                <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See {game.expensiveProduct.seller}</Button></Link>
                             </Paper>
                         </Box>
                     </Grid>
