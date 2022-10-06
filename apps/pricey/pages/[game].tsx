@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { Game } from '../app';
 import GameComponent, { GameComponentProps } from '../components/GameComponent';
 
 const Page: NextPage<GameComponentProps> = (props) => {

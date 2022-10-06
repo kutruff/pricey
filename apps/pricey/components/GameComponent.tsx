@@ -83,7 +83,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
     };
 
     const onShareClick = () => {
-        navigator.clipboard.writeText(getShareText(state.guesses));
+        navigator.clipboard.writeText(getShareText(game.expensiveProduct.price, state.guesses));
         setHasShared(true);
     };
 
@@ -179,9 +179,9 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                             <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
                                 <Typography align='center' variant='h5'>{guessDifference === 0 ? 'Wow! Perfect Guess' : 'Close enough!'}</Typography>
                                 <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
-                                <GuessRange guesses={state.guesses} />
+                                <GuessRange actualPrice={game.expensiveProduct.price} guesses={state.guesses} />
                                 <Box style={{ display: 'flex' }} justifyContent="center">
-                                    <GameResults guesses={state.guesses} />
+                                    <GameResults actualPrice={game.expensiveProduct.price} guesses={state.guesses} />
                                 </Box>
                                 <Box style={{ display: 'flex' }} justifyContent="center">
                                     <Button fullWidth={false} variant='contained' onClick={onShareClick}>{hasShared ? 'copied' : 'share'}</Button>
@@ -237,26 +237,27 @@ function getAffiliateLink(link: string) {
 }
 
 interface GameResultsProps {
+    actualPrice: number,
     guesses: number[],
 }
 
-export const GameResults: FC<GameResultsProps> = ({ guesses }) => {
-    return <>{getGuessSquares(guesses).join('')}</>;
+export const GameResults: FC<GameResultsProps> = ({ actualPrice, guesses }) => {
+    return <>{getGuessSquares(actualPrice, guesses).join('')}</>;
 };
 
-function getShareText(guesses: number[]) {
-    const results = getGuessSquares(guesses).join(' ');
+function getShareText(actualPrice: number, guesses: number[]) {
+    const results = getGuessSquares(actualPrice, guesses).join(' ');
 
     const shareText = `Pricey: ${results} https://pricey.wtf`;
     return shareText;
 }
-function getGuessSquares(guesses: number[]) {
+function getGuessSquares(actualPrice: number, guesses: number[]) {
     const results: string[] = [];
     for (let i = 0; i < guesses.length - 1; i++) {
         results.push('🟥');
     }
-
-    results.push('🟩');
+    const lastGuess = guesses[guesses.length - 1];
+    results.push(lastGuess === actualPrice ? '🎯' : '🟩');
     return results;
 }
 
