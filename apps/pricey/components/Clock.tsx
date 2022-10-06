@@ -22,6 +22,7 @@ const CountdownClock: FC<CountdownClockProps> = ({ deadline }) => {
 
     useEffect(() => {
         refreshTimeLeft(deadline);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
