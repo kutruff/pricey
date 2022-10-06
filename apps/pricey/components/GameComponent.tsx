@@ -177,7 +177,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                     <Grid item>
                         <Paper sx={{ p: 1 }}>
                             <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
-                                <Typography align='center' variant='h5'>Close enough!</Typography>
+                                <Typography align='center' variant='h5'>{guessDifference === 0 ? 'Wow! Perfect Guess' : 'Close enough!'}</Typography>
                                 <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
                                 <GuessRange guesses={state.guesses} />
                                 <Box style={{ display: 'flex' }} justifyContent="center">
@@ -267,9 +267,9 @@ export const GuessRange: FC<GameResultsProps> = ({ guesses }) => {
     return (
         <Typography align='center' color="text.secondary" variant='caption'>
             {guesses.length === 1 ? (
-                `guess range: ${currencyFormatter.format(minGuess)} - ${currencyFormatter.format(maxGuess)}`
-            ) : (
                 `One guess! You must be rich! Guess: ${currencyFormatter.format(minGuess)}`
+            ) : (
+                `guess range: ${currencyFormatter.format(minGuess)} - ${currencyFormatter.format(maxGuess)}`
             )}
         </Typography>
     );
