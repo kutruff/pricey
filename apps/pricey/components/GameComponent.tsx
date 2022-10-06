@@ -130,7 +130,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
 
             {!hasWon ? (
                 <Grid item>
-                    <Paper>
+                    <Paper sx={{p:1}}>
                         <Typography align="center" variant='body1'>
                             {state.guesses.length === 0 ?
                                 `Guess the ridiculous price within ${marginOfErrorToWin}%!`
@@ -141,14 +141,15 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                         <form onSubmit={handleSubmit}>
                             <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'nowrap', gap: 1 }}>
                                 <Box sx={{ flex: 1 }} >
-                                    <FormControl fullWidth error={hasError} size='small'>
+                                    <FormControl fullWidth error={hasError} size='small' variant='outlined' >
                                         <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
                                         <OutlinedInput
+                                            type='number'
                                             id="outlined-adornment-amount"
                                             value={currentGuess}
                                             onChange={handleChange}
                                             startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                            label="Amount"
+                                            label='Amount'
                                         />
                                     </FormControl>
                                 </Box>
@@ -157,10 +158,11 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                                 </Box>
                             </Box>
                         </form>
+                        <Typography align='center' color='text.secondary'>Guesses made: {state.guesses.length}</Typography>
                         <List>
                             {state.guesses.map((x, index) =>
                                 <ListItem disablePadding key={index}>
-                                    <Typography variant='caption' color='secondary'>{x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {formatter.format(x)}</Typography>
+                                    <Typography color='secondary'>{x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {formatter.format(x)}</Typography>
                                 </ListItem>)}
                         </List>
                     </Paper>
@@ -170,7 +172,6 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                     <Grid item>
                         <Paper>
                             <Box style={{ display: 'flex', flexDirection: 'column' }} justifyContent="center">
-
                                 <Typography align='center' variant='h5'>Close enough!</Typography>
                                 <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
                                 <GuessRange guesses={state.guesses} />
