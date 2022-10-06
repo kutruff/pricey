@@ -1,9 +1,17 @@
+import { Box } from '@mui/system';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import GameComponent, { GameComponentProps } from '../components/GameComponent';
 
 const Page: NextPage<GameComponentProps> = (props) => {
     return (
-        <GameComponent {...props} />
+        <Box>
+            <Head>
+                <meta property="og:url" content={`https://pricey.wtf/${props.game.id}`} key="ogurl" />
+                <meta property="og:image" content={props.game.expensiveProduct.imageUrl} key="ogimage" />
+            </Head>
+            <GameComponent {...props} />
+        </Box>
     );
 };
 

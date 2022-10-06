@@ -40,9 +40,15 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>Pricey</title>
-        <meta name="description" content="Price guessing game" />
+        <title>Pricey - A daily game to ridicule the rich.</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <meta name="keywords" content="pricey, rich, game, guessing, products" />
+        <meta name="description" content="Guess the price of ridiculous rich people products.  A new stupid game each day." />
+        <meta property="og:type" content='website' key="ogType" />
+        <meta property="og:title" content={`Pricey - A daily game to ridicule the rich.`} key="ogTitle" />
+        <meta property="og:description" content='Guess the price of ridiculous rich people products.  A new stupid game each day.' key="ogDesc" />
+        <meta property="twitter:domain" content="pricey.wtf" key="ogTwitterDomain" />
+        <meta property="twitter:card" content="summary_large_image" key="ogTwitterCard" />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />

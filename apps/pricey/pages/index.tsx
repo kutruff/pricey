@@ -2,10 +2,20 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { findClosestGameToTime, Game } from '../app';
 import GameComponent, { GameComponentProps } from '../components/GameComponent';
+import Head from 'next/head';
+import { Box } from '@mui/system';
+
 
 const Home: NextPage<GameComponentProps> = (props) => {
   return (
-    <GameComponent {...props} />
+    <Box>
+      <Head>
+        <meta property="og:url" content={`https://pricey.wtf`} key="ogurl" />
+        <meta property="og:image" content={props.game.expensiveProduct.imageUrl} key="ogimage" />
+        <meta property="og:image" content={props.game.expensiveProduct.imageUrl} key="ogimage" />
+      </Head>
+      <GameComponent {...props} />
+    </Box>
   );
 };
 

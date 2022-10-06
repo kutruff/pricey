@@ -115,6 +115,17 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
             direction="column"
             justifyContent="center"
             columns={1}>
+            {hasWon && !isTodaysGame &&
+                <Grid item>
+                    <Paper sx={{ p: 1 }}>
+                        <Grid container justifyContent='center'>
+                            <Link href={'/'} passHref>
+                                <Button variant='contained'>See today&apos;s game</Button>
+                            </Link>
+                        </Grid>
+                    </Paper>
+                </Grid>
+            }
             <Grid item>
                 <Card >
                     <Grid sx={{ mt: 1 }} container justifyContent="center">
