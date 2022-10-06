@@ -1,18 +1,17 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
 import { CacheProvider, EmotionCache, ThemeProvider } from '@emotion/react';
 import { CssBaseline, Grid, Paper, Toolbar, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
-import { AppToolbar } from '../components/AppToolbar';
-import GameComponent from '../components/GameComponent';
-import theme from '../styling/theme';
-import createEmotionCache from '../styling/createEmotionCache';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { AppToolbar } from '../components/AppToolbar';
+import '../styles/globals.css';
+import createEmotionCache from '../styling/createEmotionCache';
+import theme from '../styling/theme';
 
-import * as ga from '../analytics';
 import { useEffect } from 'react';
+import * as ga from '../analytics';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -25,7 +24,13 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
   const router = useRouter();
 
   useEffect(() => {
+    console.log('page loaded:');
+    ga.pageview(router.pathname);
+  }, []);
+
+  useEffect(() => {
     const handleRouteChange = (url: string) => {
+      console.log('route changed:', url);
       ga.pageview(url);
     };
     //When the component is mounted, subscribe to router changes
@@ -38,7 +43,6 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
-
 
   return (
     <CacheProvider value={emotionCache}>
