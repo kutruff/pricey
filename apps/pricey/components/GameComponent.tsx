@@ -130,7 +130,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
 
             {!hasWon ? (
                 <Grid item>
-                    <Paper sx={{p:1}}>
+                    <Paper sx={{ p: 1 }}>
                         <Typography align="center" variant='body1'>
                             {state.guesses.length === 0 ?
                                 `Guess the ridiculous price within ${marginOfErrorToWin}%!`
@@ -170,7 +170,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
             ) : (
                 <>
                     <Grid item>
-                        <Paper>
+                        <Paper sx={{p: 1}}>
                             <Box style={{ display: 'flex', flexDirection: 'column' }} justifyContent="center">
                                 <Typography align='center' variant='h5'>Close enough!</Typography>
                                 <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
@@ -195,13 +195,12 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                         </Box>
                     </Grid>
                     <Grid item>
-                        <Paper>
+                        <Paper sx={{p: 1}}>
                             <Typography align="center" variant="h6">What normal people get.</Typography>
                             <Typography align="center" variant="caption">Click to see on Amazon</Typography>
                             <NormalProduct product={game.normalProduct} />
                         </Paper>
                     </Grid>
-
                 </>
             )}
         </Grid >
