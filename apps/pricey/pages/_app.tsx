@@ -19,26 +19,19 @@ const clientSideEmotionCache = createEmotionCache();
 export interface MyAppProps extends AppProps {
   emotionCache: EmotionCache
 }
-//TODO: setup emotion caching and server thing for _app and _document: https://github.com/mui/material-ui/blob/master/examples/nextjs/pages/_app.js
 function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: MyAppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('page loaded:');
     ga.pageview(router.pathname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      console.log('route changed:', url);
       ga.pageview(url);
     };
-    //When the component is mounted, subscribe to router changes
-    //and log those page views
     router.events.on('routeChangeComplete', handleRouteChange);
-
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };

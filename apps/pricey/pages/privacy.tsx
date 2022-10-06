@@ -1,20 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Container, Box, CssBaseline, Toolbar } from '@mui/material';
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { css } from '@emotion/react';
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../styles/Home.module.css';
-import { flexVertical, flexGrowAndFlexChildrenVertical } from '../styling';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../styling/theme';
-import { AppToolbar } from '../components/AppToolbar';
-import { Game } from '../app';
-import GameComponent from '../components/GameComponent';
-
-// const pageContainerStyle = css({
-//   height: '100vh',
-// }, flexVertical);
+import type { GetStaticProps, NextPage } from 'next';
 
 const PrivacyPolicy: NextPage = ({ }) => {
   return (

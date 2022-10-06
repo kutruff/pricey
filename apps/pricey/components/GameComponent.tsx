@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Troubleshoot } from '@mui/icons-material';
-import { Button, Card, CardContent, FormControl, Slide } from '@mui/material';
+import { Button, Card, CardContent, FormControl } from '@mui/material';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -11,7 +10,7 @@ import ListItem from '@mui/material/ListItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { FC, useEffect, useMemo, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Game, Product } from '../app';
 
 
@@ -205,7 +204,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
             )}
         </Grid >
     );
-}
+};
 
 export default GameComponent;
 

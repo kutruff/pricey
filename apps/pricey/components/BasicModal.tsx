@@ -3,7 +3,6 @@
 import { IconButton, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
 import { FC, PropsWithChildren, ReactNode, useState } from 'react';
 
 const style = {
