@@ -126,8 +126,29 @@
         }
     },
     {
-        "id": "saks-swim-goggles",
+        "id": "versace-keychain",
         "date": "2022-10-08T04:00:00.00Z",
+        "title": "Versace Keychain",
+        "expensiveProduct": {
+            "name": "Keychain and Airtag Holder",
+            "seller": "Versace",
+            "sellerId": "versace",
+            "storePageUrl": "https://www.versace.com/us/en-us/men/accessories/small-leather-goods/keyrings/medusa-airtag-key-chain-1uc3v/1006198-1A03190_1UC3V.html",
+            "imageUrl": "https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw7b965675/original/90_1006198-1A03190_1UC3V_23_MedusaAirTagKeyRing-Keyrings-versace-online-store_1_1.jpg?sw=748&sh=1050&sm=fit",
+            "price": 325
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Eusty Air Tag Keychain",
+            "storePageUrl": "https://www.amazon.com/Eusty-Protective-Case-AirTag-Multi-Color/dp/B09529D86J/ref=sr_1_4",
+            "imageUrl": "https://m.media-amazon.com/images/I/81PxMjmNUbS._AC_SX679_.jpg",
+            "price": 9.99
+        }
+    },
+    {
+        "id": "saks-swim-goggles",
+        "date": "2022-10-09T04:00:00.00Z",
         "title": "Fendi Goggles",
         "expensiveProduct": {
             "name": "Fendi Swim Goggles",
@@ -148,7 +169,7 @@
     },
     {
         "id": "saks-dog-jacket",
-        "date": "2022-10-09T04:00:00.00Z",
+        "date": "2022-10-10T04:00:00.00Z",
         "title": "Saks Fifth Avenue Dog Jacket",
         "expensiveProduct": {
             "name": "Biker Faux Leather Dog Jacket",
