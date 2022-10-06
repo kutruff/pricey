@@ -39,7 +39,10 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
             <Grid container justifyContent='space-between' flexWrap={'nowrap'}>
               <Grid item><Typography variant='subtitle2' color={'gray'}>Copyright 2022 by Kutruff LLC</Typography></Grid>
               <Grid item><Typography variant='subtitle2'><Link href="/privacy">Privacy Policy</Link></Typography></Grid>
-              <Grid item><Typography variant='subtitle2'><Link href="/terms">Terms</Link></Typography></Grid>
+              <Grid item><Typography variant='subtitle2'><Link href="/terms">Terms</Link></Typography></Grid>              
+            </Grid>
+            <Grid container justifyContent='space-between' flexWrap={'nowrap'}>
+              <Grid item><Typography variant='subtitle2' color={'gray'}>As an Amazon Associate I earn from qualifying purchases.</Typography></Grid>              
             </Grid>
           </Paper>
         </Box>

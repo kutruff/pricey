@@ -179,7 +179,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                     <Grid container item justifyContent="center" >
                         <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: 5 }} justifyContent="center">
                             <Paper>
-                                <Link href={game.normalProduct.storePageUrl}><Button variant="outlined" color="secondary" >See Cheaper Amazon alternative </Button></Link>
+                                <Link href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Cheaper Amazon alternative </Button></Link>
                             </Paper>
                             <Paper>
                                 <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See original</Button></Link>
@@ -198,9 +198,17 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
             )}
         </Grid >
     );
-};
+}
 
 export default GameComponent;
+
+function getAffiliateLink(link: string) {
+    const url = new URL(link);
+
+    // If your expected result is "http://foo.bar/?x=1&y=2&x=42"
+    url.searchParams.set('tag', 'kutruffllc-20');
+    return url.toString();
+}
 
 interface GameResultsProps {
     guesses: number[],
@@ -260,7 +268,7 @@ export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
         //     </a>
         // </div>
         <Card sx={{ mt: 1 }} elevation={2}>
-            <Link href={product.storePageUrl}>
+            <Link href={getAffiliateLink(product.storePageUrl)}>
                 <Grid sx={{ mt: 1 }} container justifyContent="center">
                     <Grid item>
                         <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={product.imageUrl} />
