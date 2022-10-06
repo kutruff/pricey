@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Button, Grid, Paper } from '@mui/material';
+import { Button, Grid, Paper, Typography } from '@mui/material';
 import type { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import { Game } from '../app';
@@ -18,7 +18,10 @@ const Home: NextPage<HomeProps> = ({ games }) => {
   ));
   return (
     <Paper sx={{ p: 2 }}>
-      <Grid container spacing={1}>
+      <Typography variant="h5" align='center'>
+        Previous Products
+      </Typography>
+      <Grid container spacing={1} sx={{ mt: 1 }}>
         {buttons}
       </Grid>
     </Paper >
@@ -29,8 +32,10 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   const now = new Date();
+
   let games = (await import('../data/games.json')).default as Game[];
   games = games.filter(x => new Date(x.date).getTime() <= now.getTime());
   games.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+
   return { props: { games } };
 };

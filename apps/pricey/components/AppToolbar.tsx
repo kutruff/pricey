@@ -1,7 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { AppBar, AppBarProps, Box, Button, css, IconButton, Toolbar, Typography } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import { AppBar, AppBarProps, Box, css, IconButton, Toolbar, Typography } from '@mui/material';
 import Link from 'next/link';
+import BasicModal from './BasicModal';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { FC } from 'react';
 
 type AppToolbarProps = AppBarProps & {
     onChangeTheme: () => void;
@@ -20,7 +23,6 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
     return (
         <AppBar color="default" {...other}>
             <Toolbar>
-
                 <Link href={'/'}>
                     <Typography variant="h1" css={titleTypographyStyle}>
                         Pricey
@@ -31,91 +33,10 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
 
                 <Box sx={{ display: 'flex' }}>
                     <Link href={'/archive'} passHref>
-                        <IconButton
-                        // sx={{
-                        //     marginLeft: (x) => x.spacing(1),
-                        //     backgroundColor: (x) =>
-                        //         x.palette.mode === "light"
-                        //             ? x.palette.grey[300]
-                        //             : x.palette.grey[700],
-                        //     width: 40,
-                        //     height: 40,
-                        // }}
-                        // size="large"
-                        >
-                            <CalendarTodayIcon />
-                        </IconButton>
+                        <IconButton><CalendarTodayIcon /></IconButton>
                     </Link>
+                    <HelpModal />
                 </Box>
-
-                {/* Account related controls (icon buttons) */}
-
-                {/* {user && (
-                    <Chip
-                        sx={{
-                            height: 40,
-                            borderRadius: 20,
-                            fontWeight: 600,
-                            backgroundColor: (x) =>
-                                x.palette.mode === "light"
-                                    ? x.palette.grey[300]
-                                    : x.palette.grey[700],
-                            ".MuiChip-avatar": { width: 32, height: 32 },
-                        }}
-                        component="a"
-                        avatar={
-                            <Avatar
-                                alt={user.name || ""}
-                                src={user.picture.url || undefined}
-                            />
-                        }
-                        label={getFirstName(user.name || "")}
-                        href={`/@${user.username}`}
-                        onClick={navigate}
-                    />
-                )}
-                {user && (
-                    <IconButton
-                        sx={{
-                            marginLeft: (x) => x.spacing(1),
-                            backgroundColor: (x) =>
-                                x.palette.mode === "light"
-                                    ? x.palette.grey[300]
-                                    : x.palette.grey[700],
-                            width: 40,
-                            height: 40,
-                        }}
-                        children={<NotificationsNone />}
-                        onClick={openNotificationsMenu}
-                        size="large"
-                    />
-                )}
-                {user && (
-                    <IconButton
-                        ref={menuAnchorRef}
-                        sx={{
-                            marginLeft: (x) => x.spacing(1),
-                            backgroundColor: (x) =>
-                                x.palette.mode === "light"
-                                    ? x.palette.grey[300]
-                                    : x.palette.grey[700],
-                            width: 40,
-                            height: 40,
-                        }}
-                        children={<ArrowDropDown />}
-                        onClick={openUserMenu}
-                        size="large"
-                    />
-                )}
-                {!user && (
-                    <Button
-                        variant="outlined"
-                        href="/auth/google"
-                        color="primary"
-                        onClick={signIn}
-                        children="Log in / Register"
-                    />
-                )} */}
             </Toolbar>
 
             {/* Pop-up menus */}
@@ -134,3 +55,17 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
         </AppBar >
     );
 }
+const HelpModal: FC = () => {
+    return (
+        <BasicModal icon={<HelpOutlineIcon />}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+                Guess the price of these ridiculously expensive items.
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Simply enter guesses, and keep trying until you are close enough to get a result.
+                Afterwards, you may see what a normal person would pay on Amazon.
+            </Typography>
+        </BasicModal>
+    );
+};
+
