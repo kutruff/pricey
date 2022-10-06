@@ -26,6 +26,14 @@ export interface State {
     storageVersion: number
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
+
+
 //You can rev this to force the cached version to be ignored until it is written again.
 const storageVersion = 0;
 
@@ -61,12 +69,6 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasInited, state]);
 
-    const formatter = useMemo(() => new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-        maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-    }), []);
 
     const handleChange = (event: any) => {
         const value = event.target.value;
@@ -248,7 +250,7 @@ export const GuessRange: FC<GameResultsProps> = ({ guesses }) => {
     const maxGuess = guesses.reduce((acc, current) => Math.max(acc, current), Number.MIN_VALUE);
 
     return (
-        <Typography align='center' color="text.secondary" variant='caption'>guess range: ${minGuess} - ${maxGuess}</Typography>
+        <Typography align='center' color="text.secondary" variant='caption'>guess range: {formatter.format(minGuess)} - {formatter.format(maxGuess)}</Typography>
     );
 };
 

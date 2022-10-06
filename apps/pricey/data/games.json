@@ -1,7 +1,28 @@
 [
     {
+        "id": "tiffany-table-tennis",
+        "date": "2022-10-02T04:00:00.00Z",
+        "title": "Tiffany Pool Balls",
+        "expensiveProduct": {
+            "name": "Leather and Walnut Table Tennis Paddles",
+            "seller": "Tiffany & Co.",
+            "sellerId": "tiffany",
+            "storePageUrl": "https://www.tiffany.com/accessories/games-novelties/everyday-objects-leather-and-walnut-table-tennis-paddles-60561737/",
+            "imageUrl": "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/everyday-objectsleather-and-walnut-table-tennis-paddles-60561737_975115_ED.jpg?&op_usm=1.5,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&&defaultImage=NoImageAvailableInternal&fmt=webp",
+            "price": 720
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Franklin Sports Ping Pong Paddle Set",
+            "storePageUrl": "https://www.amazon.com/dp/B00V57L51U?ref_=cm_sw_r_cp_ud_dp_G025QT5CZ9YXKAB21WD4",
+            "imageUrl": "https://m.media-amazon.com/images/I/91bWnmMT-SL._AC_SX679_.jpg",
+            "price": 12.99
+        }
+    },
+    {
         "id": "neimanmarcus-gold-mirror",
-        "date": "2022-10-03T00:00:00.00Z",
+        "date": "2022-10-03T04:00:00.00Z",
         "title": "Mirror",
         "expensiveProduct": {
             "name": "Emma Wall Mirror",
@@ -22,7 +43,7 @@
     },
     {
         "id": "tiffany-pool-balls",
-        "date": "2022-10-04T00:00:00.00Z",
+        "date": "2022-10-04T04:00:00.00Z",
         "title": "Tiffany Pool Balls",
         "expensiveProduct": {
             "name": "Wood Pool Triangle and Ball Set",
@@ -43,7 +64,7 @@
     },
     {
         "id": "hermes-travel-tag",
-        "date": "2022-10-05T00:00:00.00Z",
+        "date": "2022-10-05T04:00:00.00Z",
         "title": "Hermes R.M.S travel tag",
         "expensiveProduct": {
             "name": "R.M.S travel tag",
@@ -63,29 +84,29 @@
         }
     },
     {
-        "id": "tiffany-table-tennis",
-        "date": "2022-10-06T00:00:00.00Z",
-        "title": "Tiffany Pool Balls",
+        "id": "hermes-fork",
+        "date": "2022-10-06T04:00:00.00Z",
+        "title": "Hermes fork",
         "expensiveProduct": {
-            "name": "Leather and Walnut Table Tennis Paddles",
-            "seller": "Tiffany & Co.",
-            "sellerId": "tiffany",
-            "storePageUrl": "https://www.tiffany.com/accessories/games-novelties/everyday-objects-leather-and-walnut-table-tennis-paddles-60561737/",
-            "imageUrl": "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/everyday-objectsleather-and-walnut-table-tennis-paddles-60561737_975115_ED.jpg?&op_usm=1.5,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&&defaultImage=NoImageAvailableInternal&fmt=webp",
-            "price": 720
+            "name": "HTS serving fork",
+            "seller": "Hermes",
+            "sellerId": "hermes",
+            "storePageUrl": "https://www.hermes.com/us/en/product/hts-serving-fork-P008814P/",
+            "imageUrl": "https://assets.hermes.com/is/image/hermesproduct/hts-serving-fork--008814P-worn-1-0-0-800-800_b.jpg",
+            "price": 200
         },
         "normalProduct": {
             "seller": "Amazon",
             "sellerId": "amazon",
-            "name": "Franklin Sports Ping Pong Paddle Set",
-            "storePageUrl": "https://www.amazon.com/dp/B00V57L51U?ref_=cm_sw_r_cp_ud_dp_G025QT5CZ9YXKAB21WD4",
-            "imageUrl": "https://m.media-amazon.com/images/I/91bWnmMT-SL._AC_SX679_.jpg",
-            "price": 12.99
+            "name": "Stainless Steel Dinner Forks",
+            "storePageUrl": "https://www.amazon.com/AmazonBasics-Stainless-Steel-Kitchen-Dinner/dp/B0736W5XNB/ref=sr_1_6",
+            "imageUrl": "https://m.media-amazon.com/images/I/71Wwbxe8+EL._AC_SX466_.jpg",
+            "price": 11.96
         }
     },
     {
         "id": "saks-dog-jacket",
-        "date": "2022-10-07T00:00:00.00Z",
+        "date": "2022-10-07T04:00:00.00Z",
         "title": "Saks Fifth Avenue Dog Jacket",
         "expensiveProduct": {
             "name": "Biker Faux Leather Dog Jacket",

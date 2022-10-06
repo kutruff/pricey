@@ -9,7 +9,7 @@ import { flexVertical, flexGrowAndFlexChildrenVertical } from '../styling';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../styling/theme';
 import { AppToolbar } from '../components/AppToolbar';
-import { Game } from '../app';
+import { findClosestGameToTime, Game } from '../app';
 import GameComponent from '../components/GameComponent';
 
 interface HomeProps {
@@ -25,26 +25,12 @@ const Home: NextPage<HomeProps> = ({ game }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const now = new Date().getTime();
-
   const games = (await import('../data/games.json')).default as Game[];
 
-  let closestGame: Game | undefined = undefined;
-  let closestGameTime = Number.MAX_SAFE_INTEGER;
-
-  for (const current of games) {
-    const currentGameTime = new Date(current.date).getTime();
-    // console.log(current.date, currentGameTime);
-    if (currentGameTime <= now && (!closestGame || currentGameTime > closestGameTime)) {
-      closestGame = current;
-      closestGameTime = currentGameTime;
-    }
-  }
-
-  if (!closestGame) {
-    closestGame = games[games.length - 1];
-  }
-  // console.log(closestGame);
+  const now = new Date().getTime();
+  const closestGame = findClosestGameToTime(games, now);
 
   return closestGame ? { props: { game: closestGame } } : { notFound: true };
 };
+
+
