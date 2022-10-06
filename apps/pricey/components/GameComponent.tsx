@@ -177,7 +177,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                     <Grid item>
                         <Paper sx={{ p: 1 }}>
                             <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
-                                <Typography align='center' variant='h5'>{guessDifference === 0 ? 'Wow! Perfect Guess' : 'Close enough!'}</Typography>
+                                <Typography align='center' variant='h5'>{guessDifference === 0 ? 'Wow! Perfect Guess!' : 'Close enough!'}</Typography>
                                 <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
                                 <GuessRange actualPrice={game.expensiveProduct.price} guesses={state.guesses} />
                                 <Box style={{ display: 'flex' }} justifyContent="center">
@@ -242,7 +242,7 @@ interface GameResultsProps {
 }
 
 export const GameResults: FC<GameResultsProps> = ({ actualPrice, guesses }) => {
-    return <>{getGuessSquares(actualPrice, guesses).join('')}</>;
+    return <>{getGuessSquares(actualPrice, guesses).join(' ')}</>;
 };
 
 function getShareText(actualPrice: number, guesses: number[]) {
