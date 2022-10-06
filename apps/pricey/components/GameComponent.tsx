@@ -111,7 +111,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
             justifyContent="center"
             columns={1}>
             <Grid item>
-                <Card sx={{ mt: 1 }}>
+                <Card>
                     <Grid sx={{ mt: 1 }} container justifyContent="center">
                         <Grid item>
                             <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
@@ -195,7 +195,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                     </Grid>
                     <Grid item>
                         <Paper>
-                            <Typography align="center" variant="h6">What normal people get:</Typography>
+                            <Typography align="center" variant="h6">What normal people get.</Typography>
                             <Typography align="center" variant="caption">Click to see on Amazon</Typography>
                             <NormalProduct product={game.normalProduct} />
                         </Paper>

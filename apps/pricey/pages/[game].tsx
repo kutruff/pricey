@@ -1,11 +1,12 @@
-import { display } from '@mui/system';
-import { GetStaticProps, GetStaticPaths, GetServerSideProps, GetStaticPropsResult, NextPage } from 'next';
-import { FC, useState } from 'react';
-import { Game, Product } from '../app';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { Game } from '../app';
 import GameComponent from '../components/GameComponent';
 
 const Page: NextPage<{ game: Game }> = ({ game }) => {
-    return <GameComponent game={game} />;
+    return (
+        <GameComponent game={game}
+        />
+    );
 };
 
 export default Page;
