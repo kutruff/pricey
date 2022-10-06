@@ -1,5 +1,5 @@
 name: revalidate-cron
-name: daily-cron
+
 on:
   schedule:
     - cron: '2 4,5 * * *'
