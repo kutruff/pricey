@@ -134,7 +134,7 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                         <Typography align="center" variant='body1'>
                             {state.guesses.length === 0 ?
                                 `Guess the ridiculous price within ${marginOfErrorToWin}%!`
-                                : guessDifference > 0 ? 'Price is lower.' : 'Price is higher.'
+                                : guessDifference > 0 ? 'Price is lower. 👇' : 'Price is higher. ☝️'
                             }
                         </Typography>
 
@@ -233,10 +233,7 @@ export const GameResults: FC<GameResultsProps> = ({ guesses }) => {
 function getShareText(guesses: number[]) {
     let results = '';
     for (let i = 0; i < guesses.length - 1; i++) {
-        results += '🟥';
-        if (i < guesses.length - 2) {
-            results += ' ';
-        }
+        results += '🟥 ';
     }
 
     results += '🟩';
