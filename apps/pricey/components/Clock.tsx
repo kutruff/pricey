@@ -1,38 +1,40 @@
-import { Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
+import { TimeOffset } from '../app';
 
 export interface CountdownClockProps {
     deadline: Date
 }
 
 const CountdownClock: FC<CountdownClockProps> = ({ deadline }) => {
-    const [hours, setHours] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
+    const [timeLeft, setTimeLeft] = useState<TimeOffset>({ hours: 0, minutes: 0, seconds: 0 });
 
-    const getTimeUntil = (deadline: Date) => {
-        const time = deadline.getTime() - Date.now();
-        setSeconds(Math.floor((time / 1000) % 60));
-        setMinutes(Math.floor((time / 1000 / 60) % 60));
-        setHours(Math.floor((time / (1000 * 60 * 60))));
+    const refreshTimeLeft = (deadline: Date) => {
+        const time = Math.max(deadline.getTime() - Date.now(), 0);
+
+        const newTimeLeft = {
+            seconds: Math.floor((time / 1000) % 60),
+            minutes: Math.floor((time / 1000 / 60) % 60),
+            hours: Math.floor((time / (1000 * 60 * 60))),
+        };
+        setTimeLeft(newTimeLeft);
     };
 
     useEffect(() => {
-        getTimeUntil(deadline);
-    });
+        refreshTimeLeft(deadline);
+    }, []);
 
     useEffect(() => {
-        setInterval(() => getTimeUntil(deadline), 1000);
+        const timerHandle = setInterval(() => refreshTimeLeft(deadline), 1000);
+        return () => clearInterval(timerHandle);
     }, [deadline]);
 
-    const leading0 = (num: number) => {
-        return num < 10 ? '0' + num : num;
+    const addLeadingZeros = (value: number) => {
+        return value < 10 ? '0' + value : value;
     };
 
     return (
-        <Paper elevation={2}>
-            <Typography>{`${leading0(hours)}:${leading0(minutes)}:${leading0(seconds)}}`}</Typography>
-        </Paper>
+        <Typography variant='h4'>{`${addLeadingZeros(timeLeft.hours || 0)}:${addLeadingZeros(timeLeft.minutes || 0)}:${addLeadingZeros(timeLeft.seconds || 0)}`}</Typography>
     );
 };
 

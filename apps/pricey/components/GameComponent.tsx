@@ -4,15 +4,16 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
-import Link from '@mui/material/Link';
+import Thing from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
-import { Game, Product } from '../app';
-
+import { Game, getNextUpdateTime, Product } from '../app';
+import CountdownClock from './Clock';
 
 const parseGuess = (value: string) => {
     const price = Number.parseFloat(value);
@@ -25,7 +26,7 @@ export interface State {
     storageVersion: number
 }
 
-const formatter = new Intl.NumberFormat('en-US', {
+const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
@@ -36,7 +37,12 @@ const formatter = new Intl.NumberFormat('en-US', {
 //You can rev this to force the cached version to be ignored until it is written again.
 const storageVersion = 0;
 
-const GameComponent: FC<{ game: Game }> = ({ game }) => {
+export interface GameComponentProps {
+    game: Game,
+    isTodaysGame: boolean
+}
+
+const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
     const [state, setState] = useState<State>({ guesses: [], storageVersion });
     const [currentGuess, setCurrentGuess] = useState('');
     const [hasError, setHasError] = useState(false);
@@ -110,17 +116,17 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
             justifyContent="center"
             columns={1}>
             <Grid item>
-                <Card>
+                <Card >
                     <Grid sx={{ mt: 1 }} container justifyContent="center">
                         <Grid item>
                             <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
                         </Grid>
                     </Grid>
-                    <CardContent sx={{ mt: 0, '&:last-child': { pb: 0 } }}>
+                    <CardContent sx={{ mt: 0, '&:last-child': { pb: 1 } }}>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                             {game.expensiveProduct.seller}
                         </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        <Typography sx={{}} color="text.secondary">
                             {game.expensiveProduct.name}
                         </Typography>
                     </CardContent>
@@ -157,11 +163,11 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                                 </Box>
                             </Box>
                         </form>
-                        <Typography align='center' color='text.secondary'>Guesses made: {state.guesses.length}</Typography>
+                        <Typography align='center' color='text.secondary' variant='body1'>Guesses made: {state.guesses.length}</Typography>
                         <List>
                             {state.guesses.map((x, index) =>
                                 <ListItem disablePadding key={index}>
-                                    <Typography color='secondary'>{x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {formatter.format(x)}</Typography>
+                                    <Typography color='secondary'>{x < game.expensiveProduct.price ? <>⬆️</> : <>⬇️</>} {currencyFormatter.format(x)}</Typography>
                                 </ListItem>)}
                         </List>
                     </Paper>
@@ -169,8 +175,8 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
             ) : (
                 <>
                     <Grid item>
-                        <Paper sx={{p: 1}}>
-                            <Box style={{ display: 'flex', flexDirection: 'column' }} justifyContent="center">
+                        <Paper sx={{ p: 1 }}>
+                            <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
                                 <Typography align='center' variant='h5'>Close enough!</Typography>
                                 <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
                                 <GuessRange guesses={state.guesses} />
@@ -186,18 +192,34 @@ const GameComponent: FC<{ game: Game }> = ({ game }) => {
                     <Grid container item justifyContent="center" >
                         <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: 5 }} justifyContent="center">
                             <Paper>
-                                <Link href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Basic Amazon Alternative</Button></Link>
+                                <Thing href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Basic Amazon Alternative</Button></Thing>
                             </Paper>
                             <Paper>
-                                <Link href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See {game.expensiveProduct.seller}</Button></Link>
+                                <Thing href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See {game.expensiveProduct.seller}</Button></Thing>
                             </Paper>
                         </Box>
                     </Grid>
                     <Grid item>
-                        <Paper sx={{p: 1}}>
+                        <Paper sx={{ p: 1 }}>
                             <Typography align="center" variant="h6">What normal people get.</Typography>
                             <Typography align="center" variant="caption">Click to see on Amazon</Typography>
                             <NormalProduct product={game.normalProduct} />
+                        </Paper>
+                    </Grid>
+                    <Grid item>
+                        <Paper sx={{ p: 1 }}>
+                            <Grid container justifyContent='center'>
+                                {isTodaysGame ? (
+                                    <Grid item>
+                                        <Typography variant='h6' align="center">Next Game</Typography>
+                                        <CountdownClock deadline={getNextUpdateTime()} />
+                                    </Grid>
+                                ) : (
+                                    <Link href={'/'} passHref>
+                                        <Button variant='contained'>See today&apos;s game</Button>
+                                    </Link>
+                                )}
+                            </Grid>
                         </Paper>
                     </Grid>
                 </>
@@ -219,26 +241,23 @@ interface GameResultsProps {
 }
 
 export const GameResults: FC<GameResultsProps> = ({ guesses }) => {
-    const squares = [];
-    for (let i = 0; i < guesses.length - 1; i++) {
-        squares.push(<Box key={i}>🟥</Box>);
-    }
-    squares.push(<Box key={guesses.length - 1}>🟩</Box>);
-    return (
-        <Box style={{ display: 'inline-flex', maxWidth: 'fit-content' }}>{squares}</Box>
-    );
+    return <>{getGuessSquares(guesses).join('')}</>;
 };
 
 function getShareText(guesses: number[]) {
-    let results = '';
-    for (let i = 0; i < guesses.length - 1; i++) {
-        results += '🟥 ';
-    }
-
-    results += '🟩';
+    const results = getGuessSquares(guesses).join(' ');
 
     const shareText = `Pricey: ${results} https://pricey.wtf`;
     return shareText;
+}
+function getGuessSquares(guesses: number[]) {
+    const results: string[] = [];
+    for (let i = 0; i < guesses.length - 1; i++) {
+        results.push('🟥');
+    }
+
+    results.push('🟩');
+    return results;
 }
 
 export const GuessRange: FC<GameResultsProps> = ({ guesses }) => {
@@ -246,7 +265,13 @@ export const GuessRange: FC<GameResultsProps> = ({ guesses }) => {
     const maxGuess = guesses.reduce((acc, current) => Math.max(acc, current), Number.MIN_VALUE);
 
     return (
-        <Typography align='center' color="text.secondary" variant='caption'>guess range: {formatter.format(minGuess)} - {formatter.format(maxGuess)}</Typography>
+        <Typography align='center' color="text.secondary" variant='caption'>
+            {guesses.length === 1 ? (
+                `guess range: ${currencyFormatter.format(minGuess)} - ${currencyFormatter.format(maxGuess)}`
+            ) : (
+                `One guess! You must be rich! Guess: ${currencyFormatter.format(minGuess)}`
+            )}
+        </Typography>
     );
 };
 
@@ -257,7 +282,7 @@ export interface NormalProductProps {
 export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
     return (
         <Card sx={{ mt: 1 }} elevation={2}>
-            <Link href={getAffiliateLink(product.storePageUrl)}>
+            <Thing href={getAffiliateLink(product.storePageUrl)}>
                 <Grid sx={{ mt: 1 }} container justifyContent="center">
                     <Grid item>
                         <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={product.imageUrl} />
@@ -268,7 +293,8 @@ export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
                         {product.name}
                     </Typography>
                 </CardContent>
-            </Link>
+            </Thing>
         </Card >
     );
 };
+

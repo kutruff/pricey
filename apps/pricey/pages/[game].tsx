@@ -1,11 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { Game } from '../app';
-import GameComponent from '../components/GameComponent';
+import GameComponent, { GameComponentProps } from '../components/GameComponent';
 
-const Page: NextPage<{ game: Game }> = ({ game }) => {
+const Page: NextPage<GameComponentProps> = (props) => {
     return (
-        <GameComponent game={game}
-        />
+        <GameComponent {...props} />
     );
 };
 
@@ -38,5 +37,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         return x.id === gameId;
     });
 
-    return game ? { props: { game } } : { notFound: true };
+    return game ? { props: { game, isTodaysGame: false } } : { notFound: true };
 };
