@@ -200,13 +200,13 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                         </Paper>
                     </Grid>
                     <Grid item >
-                        <Paper sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
+                        <Paper sx={{ display: 'flex', p:1, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
                                 <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)}>
                                     <Button fullWidth variant="contained" color="secondary" >See Sensible Amazon Item</Button>
                                 </MaterialUiLink>
                             </Box>
-                            <Box sx={{ flexShrink: 1, }}>
+                            <Box sx={{ flexShrink: 1 }}>
                                 <Typography >vs.</Typography>
                             </Box>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
