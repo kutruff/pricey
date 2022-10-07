@@ -8,7 +8,7 @@ interface HomeProps {
   games: Game[];
 }
 
-const Home: NextPage<HomeProps> = ({ games }) => {
+const ArchivePage: NextPage<HomeProps> = ({ games }) => {
   const buttons = games.map((x, index) => (
     <Grid item key={index} >
       <Link href={`/${x.id}`} passHref>
@@ -28,7 +28,7 @@ const Home: NextPage<HomeProps> = ({ games }) => {
   );
 };
 
-export default Home;
+export default ArchivePage;
 
 export const getStaticProps: GetStaticProps = async () => {
   let games = (await import('../data/games.json')).default as Game[];
