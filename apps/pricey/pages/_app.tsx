@@ -57,7 +57,7 @@ function MyApp({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
         }} />
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Toolbar />
-          <Container maxWidth='sm' sx={{ flexGrow: 1, mt: 1 }}>
+          <Container maxWidth='sm' sx={{ flexGrow: 1, mt: 1, mb: 1 }}>
             <Component {...pageProps} />
           </Container>
           <Paper >

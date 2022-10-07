@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
-import Thing from '@mui/material/Link';
+import MaterialUiLink from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -186,34 +186,39 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
             ) : (
                 <>
                     <Grid item>
-                        <Paper sx={{ p: 1 }}>
-                            <Box style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }} >
-                                <Typography align='center' variant='h5'>{guessDifference === 0 ? 'Wow! Perfect Guess!' : 'Close enough!'}</Typography>
-                                <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
-                                <GuessRange actualPrice={game.expensiveProduct.price} guesses={state.guesses} />
-                                <Box style={{ display: 'flex' }} justifyContent="center">
-                                    <GameResults actualPrice={game.expensiveProduct.price} guesses={state.guesses} />
-                                </Box>
-                                <Box style={{ display: 'flex' }} justifyContent="center">
-                                    <Button fullWidth={false} variant='contained' onClick={onShareClick}>{hasShared ? 'copied' : 'share'}</Button>
-                                </Box>
+                        <Paper sx={{ pb: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Typography align='center' variant='h5'>{guessDifference === 0 ? 'Wow! Perfect Guess!' : 'Close enough!'}</Typography>
+                            <Typography align='center' variant='body2'>Actual price: ${game.expensiveProduct.price}</Typography>
+                            <GuessRange actualPrice={game.expensiveProduct.price} guesses={state.guesses} />
+                            <Box sx={{ display: 'flex' }} justifyContent="center">
+                                <GameResults actualPrice={game.expensiveProduct.price} guesses={state.guesses} />
                             </Box>
+                            <Box sx={{ display: 'flex' }} justifyContent="center">
+                                <Button fullWidth={false} variant='contained' onClick={onShareClick}>{hasShared ? 'copied' : 'share'}</Button>
+                            </Box>
+
                         </Paper>
                     </Grid>
-                    <Grid container item justifyContent="center" >
-                        <Box style={{ display: 'flex', flexWrap: 'nowrap', gap: 5 }} justifyContent="center">
-                            <Paper>
-                                <Thing href={getAffiliateLink(game.normalProduct.storePageUrl)}><Button variant="outlined" color="secondary" >See Alternative on Amazon</Button></Thing>
-                            </Paper>
-                            <Paper>
-                                <Thing href={game.expensiveProduct.storePageUrl}><Button variant="outlined" color="secondary" >See {game.expensiveProduct.seller}</Button></Thing>
-                            </Paper>
-                        </Box>
+                    <Grid item >
+                        <Paper sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
+                            <Box sx={{ flex: 1, minWidth: 0 }}>
+                                <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)}>
+                                    <Button fullWidth variant="contained" color="secondary" >See Sensible Amazon Item</Button>
+                                </MaterialUiLink>
+                            </Box>
+                            <Box sx={{ flexShrink: 1, }}>
+                                <Typography >vs.</Typography>
+                            </Box>
+                            <Box sx={{ flex: 1, minWidth: 0 }}>
+                                <MaterialUiLink sx={{ flex: 1 }} href={game.expensiveProduct.storePageUrl}>
+                                    <Button sx={{ flex: 1, display: 'flex' }} fullWidth variant="contained" color="secondary" >{`See ${game.expensiveProduct.seller}`}</Button>
+                                </MaterialUiLink>
+                            </Box>
+                        </Paper>
                     </Grid>
                     <Grid item>
                         <Paper sx={{ p: 1 }}>
                             <Typography align="center" variant="h6">What normal people get.</Typography>
-                            <Typography align="center" variant="caption">Click to see on Amazon</Typography>
                             <NormalProduct product={game.normalProduct} />
                         </Paper>
                     </Grid>
@@ -234,7 +239,8 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                         </Paper>
                     </Grid>
                 </>
-            )}
+            )
+            }
         </Grid >
     );
 };
@@ -295,7 +301,7 @@ export interface NormalProductProps {
 export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
     return (
         <Card sx={{ mt: 1 }} elevation={2}>
-            <Thing href={getAffiliateLink(product.storePageUrl)}>
+            <MaterialUiLink href={getAffiliateLink(product.storePageUrl)}>
                 <Grid sx={{ mt: 1 }} container justifyContent="center">
                     <Grid item>
                         <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={product.imageUrl} />
@@ -306,7 +312,7 @@ export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
                         {product.name}
                     </Typography>
                 </CardContent>
-            </Thing>
+            </MaterialUiLink>
         </Card >
     );
 };

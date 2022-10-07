@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import { AppBar, AppBarProps, Box, css, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, AppBarProps, Box, Container, css, IconButton, Toolbar, Typography } from '@mui/material';
 import Link from 'next/link';
 import BasicModal from './BasicModal';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -23,35 +23,25 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
     return (
         <AppBar color="default" {...other}>
             <Toolbar>
-                <Link href={'/'}>
-                    <Typography variant="h1" css={titleTypographyStyle}>
-                        Pricey
-                    </Typography>
-                </Link>
-                <span style={{ flexGrow: 1 }} />
-                <span style={{ flexBasis: 50 }} />
+                <Container maxWidth='sm'>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Link href={'/'}>
+                            <Typography variant="h1" css={titleTypographyStyle}>
+                                Pricey
+                            </Typography>
+                        </Link>
+                        <span style={{ flexGrow: 1 }} />
+                        <span style={{ flexBasis: 50 }} />
 
-                <Box sx={{ display: 'flex' }}>
-                    <Link href={'/archive'} passHref>
-                        <IconButton><CalendarTodayIcon /></IconButton>
-                    </Link>
-                    <HelpModal />
-                </Box>
+                        <Box sx={{ display: 'flex' }}>
+                            <Link href={'/archive'} passHref>
+                                <IconButton><CalendarTodayIcon /></IconButton>
+                            </Link>
+                            <HelpModal />
+                        </Box>
+                    </Box>
+                </Container>
             </Toolbar>
-
-            {/* Pop-up menus */}
-
-            {/* <NotificationsMenu
-                anchorEl={anchorEl.notifications}
-                onClose={closeNotificationsMenu}
-                PaperProps={{ sx: { marginTop: "8px" } }}
-            />
-            <UserMenu
-                anchorEl={anchorEl.userMenu}
-                onClose={closeUserMenu}
-                PaperProps={{ sx: { marginTop: "8px" } }}
-                onChangeTheme={onChangeTheme}
-            /> */}
         </AppBar >
     );
 }
