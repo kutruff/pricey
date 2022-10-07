@@ -83,7 +83,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
     };
 
     const onShareClick = () => {
-        navigator.clipboard.writeText(getShareText(game.expensiveProduct.price, state.guesses));
+        navigator.clipboard.writeText(getShareText(isTodaysGame ? undefined : game.id, game.expensiveProduct.price, state.guesses));
         setHasShared(true);
     };
 
@@ -200,7 +200,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                         </Paper>
                     </Grid>
                     <Grid item >
-                        <Paper sx={{ display: 'flex', p:1, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
+                        <Paper sx={{ display: 'flex', p: 1, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
                                 <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)}>
                                     <Button fullWidth variant="contained" color="secondary" >See Sensible Amazon Item</Button>
@@ -262,10 +262,10 @@ export const GameResults: FC<GameResultsProps> = ({ actualPrice, guesses }) => {
     return <>{getGuessSquares(actualPrice, guesses).join(' ')}</>;
 };
 
-function getShareText(actualPrice: number, guesses: number[]) {
+function getShareText(id: string | undefined, actualPrice: number, guesses: number[]) {
     const results = getGuessSquares(actualPrice, guesses).join(' ');
 
-    const shareText = `Pricey: ${results} https://pricey.wtf`;
+    const shareText = id ? `Pricey: ${results} https://pricey.wtf/${id}` : `Pricey: ${results} https://pricey.wtf`;
     return shareText;
 }
 
