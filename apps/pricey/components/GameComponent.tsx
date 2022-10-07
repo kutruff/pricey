@@ -210,8 +210,8 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                                 <Typography >vs.</Typography>
                             </Box>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
-                                <MaterialUiLink sx={{ flex: 1 }} href={game.expensiveProduct.storePageUrl}>
-                                    <Button sx={{ flex: 1, display: 'flex' }} fullWidth variant="contained" color="secondary" >{`See ${game.expensiveProduct.seller}`}</Button>
+                                <MaterialUiLink href={game.expensiveProduct.storePageUrl}>
+                                    <Button fullWidth variant="contained" color="secondary" >{`See ${game.expensiveProduct.seller}`}</Button>
                                 </MaterialUiLink>
                             </Box>
                         </Paper>
