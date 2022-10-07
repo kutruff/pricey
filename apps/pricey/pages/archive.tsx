@@ -10,7 +10,7 @@ interface HomeProps {
 
 const ArchivePage: NextPage<HomeProps> = ({ games }) => {
   const buttons = games.map((x, index) => (
-    <Grid item key={index} >
+    <Grid item key={index}>
       <Link href={`/${x.id}`} passHref>
         <Button variant="contained">{index + 1}</Button>
       </Link>
@@ -21,7 +21,7 @@ const ArchivePage: NextPage<HomeProps> = ({ games }) => {
       <Typography variant="h5" align='center'>
         Previous Products
       </Typography>
-      <Grid container spacing={1} sx={{ mt: 1 }}>
+      <Grid container spacing={1} sx={{ mt: 1, justifyContent: 'space-between' }} >
         {buttons}
       </Grid>
     </Paper >
