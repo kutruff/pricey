@@ -228,8 +228,8 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                             <Grid container justifyContent='center'>
                                 {isTodaysGame ? (
                                     <Grid item>
-                                        <Typography variant='h6' align="center">Next Game</Typography>
-                                        <CountdownClock deadline={getNextUpdateTime()} />
+                                        <Typography variant='h6' align="center">Next Game is tomorrow!</Typography>
+                                        {/* <CountdownClock deadline={getNextUpdateTime()} /> */}
                                     </Grid>
                                 ) : (
                                     <Link href={'/'} passHref>
