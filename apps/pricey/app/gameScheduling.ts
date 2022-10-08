@@ -34,8 +34,13 @@ export function getNextUpdateTime(): Date {
 }
 
 export function getLastUpdateTime(): Date {
-    const todayUnixTime = Date.now();
-    return getDateAtUtcTimeOfDay(new Date(todayUnixTime), switchToNextGameTimeOfDayUtc);
+    const now = new Date();
+    let updateTime = getDateAtUtcTimeOfDay(now, switchToNextGameTimeOfDayUtc);
+    if (updateTime.getTime() > now.getTime()) {
+        updateTime = new Date(updateTime.getTime() - MILLISECONDS_PER_DAY);
+    }
+
+    return getDateAtUtcTimeOfDay(updateTime, switchToNextGameTimeOfDayUtc);
 }
 
 export function findClosestGameToTime(games: Game[], now: number): Game | undefined {
