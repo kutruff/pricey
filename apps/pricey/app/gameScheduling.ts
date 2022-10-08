@@ -21,13 +21,12 @@ export function getDateAtUtcTimeOfDay(basisDate: Date, utcTimeOfDay: TimeOffset)
     return new Date((Date.UTC(year, month, date, utcTimeOfDay.hours || 0, utcTimeOfDay.minutes || 0, utcTimeOfDay.seconds || 0, utcTimeOfDay.milliseconds || 0)));
 }
 
-const MILLISECONDS_PER_DAY =  24 * 60 * 60 * 1000;
+const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 
 export function getNextUpdateTime(): Date {
-    let updateTime = getDateAtUtcTimeOfDay(new Date(), switchToNextGameTimeOfDayUtc);
-    if (updateTime.getUTCHours() > (switchToNextGameTimeOfDayUtc.hours || 0) &&
-        updateTime.getUTCMinutes() > (switchToNextGameTimeOfDayUtc.minutes || 0) &&
-        updateTime.getUTCSeconds() > (switchToNextGameTimeOfDayUtc.seconds || 0)) {
+    const now = new Date();
+    let updateTime = getDateAtUtcTimeOfDay(now, switchToNextGameTimeOfDayUtc);
+    if ((updateTime.getTime() - now.getTime()) / MILLISECONDS_PER_DAY > 1) {
         updateTime = new Date(updateTime.getTime() + MILLISECONDS_PER_DAY);
     }
 
