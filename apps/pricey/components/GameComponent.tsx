@@ -126,6 +126,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                     </Paper>
                 </Grid>
             }
+
             <Grid item>
                 <Card >
                     <Grid sx={{ mt: 1 }} container justifyContent="center">
