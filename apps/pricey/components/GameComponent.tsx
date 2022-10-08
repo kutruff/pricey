@@ -110,7 +110,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
     }
 
     return (
-        <Grid container    
+        <Grid container
             spacing={1}
             direction="column"
             justifyContent="center"
@@ -130,7 +130,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                 <Card >
                     <Grid sx={{ mt: 1 }} container justifyContent="center">
                         <Grid item>
-                            <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
+                            <Box component="img" sx={{ borderRadius: '10px', height: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
                         </Grid>
                     </Grid>
                     <CardContent sx={{ mt: 0, '&:last-child': { pb: 1 } }}>
