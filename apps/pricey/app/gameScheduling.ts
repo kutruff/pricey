@@ -24,8 +24,14 @@ export function getDateAtUtcTimeOfDay(basisDate: Date, utcTimeOfDay: TimeOffset)
 const SECONDS_PER_DAY = 1000 * 24 * 60 * 60;
 
 export function getNextUpdateTime(): Date {
-    const tomorrowUnixTime = Date.now() + SECONDS_PER_DAY;
-    return getDateAtUtcTimeOfDay(new Date(tomorrowUnixTime), switchToNextGameTimeOfDayUtc);
+    let updateTime = getDateAtUtcTimeOfDay(new Date(), switchToNextGameTimeOfDayUtc);
+    if (updateTime.getUTCHours() > (switchToNextGameTimeOfDayUtc.hours || 0) &&
+        updateTime.getUTCMinutes() > (switchToNextGameTimeOfDayUtc.minutes || 0) &&
+        updateTime.getUTCSeconds() > (switchToNextGameTimeOfDayUtc.seconds || 0)) {
+        updateTime = new Date(updateTime.getTime() + SECONDS_PER_DAY);
+    }
+
+    return getDateAtUtcTimeOfDay(updateTime, switchToNextGameTimeOfDayUtc);
 }
 
 export function getLastUpdateTime(): Date {

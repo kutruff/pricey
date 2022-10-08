@@ -110,7 +110,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
     }
 
     return (
-        <Grid container
+        <Grid container    
             spacing={1}
             direction="column"
             justifyContent="center"
