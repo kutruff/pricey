@@ -50,7 +50,6 @@ export function findClosestGameToTime(games: Game[], now: number): Game | undefi
 
     for (const current of games) {
         const currentGameTime = new Date(current.date).getTime();
-        console.log(getLastUpdateTime(), ' ', getNextUpdateTime(), ' ', new Date(now), ' ', getDateAtUtcTimeOfDay(new Date(now), switchToNextGameTimeOfDayUtc), ' ', new Date(current.date));
 
         if (currentGameTime <= now && (!closestGame || currentGameTime > closestGameTime)) {
             closestGame = current;
