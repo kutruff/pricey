@@ -225,18 +225,20 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                     </Grid>
                     <Grid item>
                         <Paper sx={{ p: 1 }}>
-                            <Grid container justifyContent='center'>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                 {isTodaysGame ? (
-                                    <Grid item>
-                                        {/* <Typography variant='h6' align="center">Next Game is tomorrow!</Typography> */}
-                                        <CountdownClock deadline={getNextUpdateTime()} />
-                                    </Grid>
+                                    <>
+                                        <Typography variant='h6' align="center">Next Game</Typography>
+                                        <Box >
+                                            <CountdownClock deadline={getNextUpdateTime()} />
+                                        </Box>
+                                    </>
                                 ) : (
                                     <Link href={'/'} passHref>
                                         <Button variant='contained'>See today&apos;s game</Button>
                                     </Link>
                                 )}
-                            </Grid>
+                            </Box>
                         </Paper>
                     </Grid>
                 </>

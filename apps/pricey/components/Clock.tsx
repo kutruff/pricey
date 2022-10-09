@@ -35,7 +35,7 @@ const CountdownClock: FC<CountdownClockProps> = ({ deadline }) => {
     };
 
     return (
-        <Typography variant='h4'>{`${addLeadingZeros(timeLeft.hours || 0)}:${addLeadingZeros(timeLeft.minutes || 0)}:${addLeadingZeros(timeLeft.seconds || 0)}`}</Typography>
+        <Typography variant='h4' >{`${addLeadingZeros(timeLeft.hours || 0)}:${addLeadingZeros(timeLeft.minutes || 0)}:${addLeadingZeros(timeLeft.seconds || 0)}`}</Typography>
     );
 };
 
