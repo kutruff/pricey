@@ -189,8 +189,29 @@
         }
     },
     {
-        "id": "frette-bathrobe",
+        "id": "gucci-dog-bowl",
         "date": "2022-10-11T04:00:00.00Z",
+        "title": "Gucci Dog Bowl",
+        "expensiveProduct": {
+            "name": "Dog Bowl",
+            "seller": "Gucci",
+            "sellerId": "gucci",
+            "storePageUrl": "https://www.gucci.com/us/en/pr/decor-lifestyle/gucci-pet-collection/pet-homeware-/pet-bowls-bowl-covers-/large-herbarium-print-pet-bowl-p-697407ZAJH59561",
+            "imageUrl": "https://media.gucci.com/style/HEXCCE1D0_Center_0_0_800x800/1655482543/697407_ZAJH5_9561_001_100_0000_Light-Large-Herbarium-print-pet-bowl.jpg",
+            "price": 615
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Dog Bowl",
+            "storePageUrl": "https://www.amazon.com/Stainless-Nonslip-Rubber-Bottom-Design/dp/B09CGX6WY6/ref=sr_1_17",
+            "imageUrl": "https://m.media-amazon.com/images/I/617xC6FJqiL._AC_SX466_.jpg",
+            "price": 13.99
+        }
+    },
+    {
+        "id": "frette-bathrobe",
+        "date": "2022-10-12T04:00:00.00Z",
         "title": "Frette Bathrobe",
         "expensiveProduct": {
             "name": "Bathrobe",
@@ -211,7 +232,7 @@
     },
     {
         "id": "saks-dog-jacket",
-        "date": "2022-10-12T04:00:00.00Z",
+        "date": "2022-10-13T04:00:00.00Z",
         "title": "Saks Fifth Avenue Dog Jacket",
         "expensiveProduct": {
             "name": "Biker Faux Leather Dog Jacket",
