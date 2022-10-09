@@ -240,8 +240,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                         </Paper>
                     </Grid>
                 </>
-            )
-            }
+            )}
         </Grid >
     );
 };
