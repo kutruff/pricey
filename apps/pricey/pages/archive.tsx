@@ -21,7 +21,7 @@ const ArchivePage: NextPage<HomeProps> = ({ games }) => {
       <Typography variant="h5" align='center'>
         Previous Products
       </Typography>
-      <Grid container spacing={1} sx={{ mt: 1, justifyContent: 'space-between' }} >
+      <Grid container spacing={1} sx={{ mt: 1, justifyContent: 'center' }} >
         {buttons}
       </Grid>
     </Paper >

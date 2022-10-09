@@ -26,7 +26,8 @@ const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 export function getNextUpdateTime(): Date {
     const now = new Date();
     let updateTime = getDateAtUtcTimeOfDay(now, switchToNextGameTimeOfDayUtc);
-    if ((updateTime.getTime() - now.getTime()) / MILLISECONDS_PER_DAY > 1) {
+
+    if (updateTime.getTime() < now.getTime()) {
         updateTime = new Date(updateTime.getTime() + MILLISECONDS_PER_DAY);
     }
 
@@ -49,6 +50,7 @@ export function findClosestGameToTime(games: Game[], now: number): Game | undefi
 
     for (const current of games) {
         const currentGameTime = new Date(current.date).getTime();
+        console.log(getLastUpdateTime(), ' ', getNextUpdateTime(), ' ', new Date(now), ' ', getDateAtUtcTimeOfDay(new Date(now), switchToNextGameTimeOfDayUtc), ' ', new Date(current.date));
 
         if (currentGameTime <= now && (!closestGame || currentGameTime > closestGameTime)) {
             closestGame = current;
