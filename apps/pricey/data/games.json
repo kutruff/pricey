@@ -168,8 +168,29 @@
         }
     },
     {
-        "id": "saks-dog-jacket",
+        "id": "frette-bathrobe",
         "date": "2022-10-10T04:00:00.00Z",
+        "title": "Frette Bathrobe",
+        "expensiveProduct": {
+            "name": "Bathrobe",
+            "seller": "Frette",
+            "sellerId": "frette",
+            "storePageUrl": "https://www.frette.com/en_US/sugar-dressing-gown.html",
+            "imageUrl": "https://image.s5a.com/is/image/saks/0400015291868_A1?wid=984&hei=1312&qlt=90&resMode=sharp2&op_usm=0.9,1.0,8,0",
+            "price": 645
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Dog Leather Motorcycle Jacket",
+            "storePageUrl": "https://www.amazon.com/NY-Threads-Womens-Fleece-Bathrobe/dp/B075S848Y3/ref=sr_1_8",
+            "imageUrl": "https://m.media-amazon.com/images/I/6101SVEZTzL._AC_UY741_.jpg",
+            "price": 20.99
+        }
+    },
+    {
+        "id": "saks-dog-jacket",
+        "date": "2022-11-10T04:00:00.00Z",
         "title": "Saks Fifth Avenue Dog Jacket",
         "expensiveProduct": {
             "name": "Biker Faux Leather Dog Jacket",
