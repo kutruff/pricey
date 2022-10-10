@@ -211,7 +211,7 @@
     },
     {
         "id": "prada-paperclip",
-        "date": "2022-10-13T04:00:00.00Z",
+        "date": "2022-10-12T04:00:00.00Z",
         "title": "Prada Paperclip",
         "expensiveProduct": {
             "name": "Paperclip money clip",
@@ -228,6 +228,27 @@
             "storePageUrl": "https://www.amazon.com/Medium-Paperclips-Office-School-Personal/dp/B07F7RQVKW/ref=sr_1_2_sspa",
             "imageUrl": "https://m.media-amazon.com/images/I/71HbnGv1w6L._AC_SX679_.jpg",
             "price": 14.99
+        }
+    },
+    {
+        "id": "dolce-gabbana-pasta",
+        "date": "2022-10-13T04:00:00.00Z",
+        "title": "Dolce Gabbanna Pasta",
+        "expensiveProduct": {
+            "name": "Pasta",
+            "seller": "Dolce Gabbanna",
+            "sellerId": "dolce-gabbanna",
+            "storePageUrl": "https://us.dolcegabbana.com/en/foodandbeverage/food/pasta/special-edition---gift-box-made-of-5-types-of-pasta-and-dolceandgabbana-american-placemats-multicolor-PS100URES1083000.html?cgid=food-and-beverage-pasta",
+            "imageUrl": "https://us.dolcegabbana.com/dw/image/v2/BGRP_PRD/on/demandware.static/-/Sites-15/default/dwba92bf21/images/zoom/PS100URES10_83000_1.jpg?sw=640&sh=816&sm=fit",
+            "price": 155
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Barilla Pasta",
+            "storePageUrl": "https://www.amazon.com/Barilla-Cellentani-Pasta-16-oz/dp/B00FR6XR9S/ref=sr_1_8_f3_0o_fs",
+            "imageUrl": "https://www.amazon.com/Barilla-Cellentani-Pasta-16-oz/dp/B00FR6XR9S/ref=sr_1_8_f3_0o_fs",
+            "price": 1.99
         }
     },
     {
