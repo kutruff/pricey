@@ -13,7 +13,8 @@ type AppToolbarProps = AppBarProps & {
 
 const titleTypographyStyle = css({
     fontSize: '1.5rem',
-    fontWeight: 500
+    fontWeight: 500,
+    cursor: 'pointer'
 });
 
 //Modified from: https://github.com/kriasoft/relay-starter-kit/blob/main/web/common/AppToolbar.tsx
@@ -26,7 +27,7 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
             <Toolbar>
                 <Container maxWidth='sm'>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Link href={'/'}>
+                        <Link href={'/'} >
                             <Typography variant="h1" css={titleTypographyStyle}>
                                 Pricey
                             </Typography>
