@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import { getGamesSortedByTime } from '../app';
 import GameComponent, { GameComponentProps } from '../components/GameComponent';
 
 const Page: NextPage<GameComponentProps> = (props) => {
@@ -40,13 +41,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         return { notFound: true };
     }
 
-    const { game: gameId } = params;
+    const games = await getGamesSortedByTime();
 
-    const games = (await import('../data/games.json')).default;
+    const gameIndex = games.findIndex(x => x.id === params.game);
 
-    const game = games.find(x => {
-        return x.id === gameId;
-    });
+    if (gameIndex === -1) {
+        return { notFound: true };
+    }
+    const previousGame = gameIndex > 0 ? games[gameIndex - 1] : null;
 
-    return game ? { props: { game, isTodaysGame: false } } : { notFound: true };
+    // const games = (await import('../data/games.json')).default;
+
+    // const game = games.find(x => {
+    //     return x.id === gameId;
+    // });
+
+    return { props: { game: games[gameIndex], isTodaysGame: false, previousGame } };
 };

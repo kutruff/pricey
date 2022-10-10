@@ -40,6 +40,7 @@ const storageVersion = 0;
 
 export interface GameComponentProps {
     game: Game,
+    previousGame: Game | null,
     isTodaysGame: boolean
 }
 
@@ -48,7 +49,7 @@ const onVisitSensibleProduct = (game: Game) => {
     report_conversion();
 };
 
-const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
+const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGame }) => {
     const [state, setState] = useState<State>({ guesses: [], storageVersion });
     const [currentGuess, setCurrentGuess] = useState('');
     const [hasError, setHasError] = useState(false);
@@ -94,8 +95,8 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
         event({ action: 'share', params: { event_label: game.id, event_category: 'game_results_copied' } });
     };
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
         const value = parseGuess(currentGuess);
         if (value) {
             setCurrentGuess('');
@@ -230,26 +231,37 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                             <NormalProduct game={game} />
                         </Paper>
                     </Grid>
+                    {isTodaysGame && (
+                        <Grid item>
+                            <Paper sx={{ p: 1 }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                    <Typography variant='h6' align="center">New Game Added Everyday</Typography>
+                                    <Box >
+                                        <CountdownClock deadline={getNextUpdateTime()} />
+                                    </Box>
+                                </Box>
+                            </Paper>
+                        </Grid>
+                    )}
                     <Grid item>
                         <Paper sx={{ p: 1 }}>
-                            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                {isTodaysGame ? (
-                                    <>
-                                        <Typography variant='h6' align="center">Next Game</Typography>
-                                        <Box >
-                                            <CountdownClock deadline={getNextUpdateTime()} />
-                                        </Box>
-                                    </>
-                                ) : (
+                            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center' }}>
+                                {previousGame && (
+                                    <Link href={`/${previousGame.id}`} passHref >
+                                        <Button variant='contained' onClick={() => event({ action: 'visit_previous_game', params: { event_label: game.id, event_category: 'links' } })}>Play previous day</Button>
+                                    </Link>)
+                                }
+                                {!isTodaysGame && (
                                     <Link href={'/'} passHref >
-                                        <Button variant='contained' onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>See today&apos;s game</Button>
+                                        <Button variant='contained' onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>Play today&apos;s game</Button>
                                     </Link>
                                 )}
                             </Box>
                         </Paper>
                     </Grid>
                 </>
-            )}
+            )
+            }
         </Grid >
     );
 };

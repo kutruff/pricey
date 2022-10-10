@@ -3,7 +3,7 @@ import { Button, Grid, Paper, Typography } from '@mui/material';
 import type { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import { event } from '../analytics';
-import { Game, getLastUpdateTime } from '../app';
+import { Game, getGamesSortedByTime, getLastUpdateTime } from '../app';
 
 interface HomeProps {
   games: Game[];
@@ -32,12 +32,13 @@ const ArchivePage: NextPage<HomeProps> = ({ games }) => {
 export default ArchivePage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  let games = (await import('../data/games.json')).default as Game[];
+  let games = await getGamesSortedByTime();
 
   const lastUpdateTime = getLastUpdateTime().getTime();
   games = games.filter(x => new Date(x.date).getTime() < lastUpdateTime);
 
-  games.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+  
 
   return { props: { games } };
 };
+

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import type { GetStaticProps, NextPage } from 'next';
-import { findClosestGameToTime, Game } from '../app';
+import { findClosestGameToTime, Game, getGamesSortedByTime } from '../app';
 import GameComponent, { GameComponentProps } from '../components/GameComponent';
 import Head from 'next/head';
 import { Box } from '@mui/system';
@@ -25,12 +25,17 @@ const Home: NextPage<GameComponentProps> = (props) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const games = (await import('../data/games.json')).default as Game[];
+  const games = await getGamesSortedByTime();
+
+  // const games = (await import('../data/games.json')).default as Game[];
 
   const now = new Date().getTime();
-  const closestGame = findClosestGameToTime(games, now);
-
-  return closestGame ? { props: { game: closestGame, isTodaysGame: true } } : { notFound: true };
+  const { closestGame, closestGameIndex } = findClosestGameToTime(games, now);
+  if (!closestGame) {
+    return { notFound: true };
+  }
+  const previousGame = closestGameIndex > 0 ? games[closestGameIndex - 1] : null;
+  return { props: { game: closestGame, isTodaysGame: true, previousGame } };
 };
 
 
