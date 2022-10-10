@@ -24,11 +24,12 @@ export default class MyDocument extends Document {
             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
               page_path: window.location.pathname,
             });
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_TAG}');
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_TAG}');            
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_TAG}');                                    
           `,
             }}
           />
-
+          {/* ${process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_TAG && `gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_TAG}');`} */}
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="shortcut icon" href="/favicon.ico" />
