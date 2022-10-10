@@ -210,8 +210,29 @@
         }
     },
     {
-        "id": "prada-paperclip",
+        "id": "versace-travel-mug",
         "date": "2022-10-12T04:00:00.00Z",
+        "title": "Versace Travel Mug",
+        "expensiveProduct": {
+            "name": "Travel Mug",
+            "seller": "Versace",
+            "sellerId": "saks",
+            "storePageUrl": "https://www.saksfifthavenue.com/product/versace-medusa-studs-travel-mug-0400012746531.html?dwvar_0400012746531_color=BLACK",
+            "imageUrl": "https://image.s5a.com/is/image/saks/0400012746531?wid=984&hei=1312&qlt=90&resMode=sharp2&op_usm=0.9,1.0,8,0",
+            "price": 1100
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Hydro Flask",
+            "storePageUrl": "https://www.amazon.com/Hydro-Flask-Around-Tumbler-Closeable/dp/B0B4FPF3NH/ref=sr_1_5",
+            "imageUrl": "https://m.media-amazon.com/images/I/51KbT+OA25L._AC_SY300_SX300_.jpg",
+            "price": 27.99
+        }
+    },    
+    {
+        "id": "prada-paperclip",
+        "date": "2022-10-13T04:00:00.00Z",
         "title": "Prada Paperclip",
         "expensiveProduct": {
             "name": "Paperclip money clip",
@@ -232,7 +253,7 @@
     },
     {
         "id": "dolce-gabbana-pasta",
-        "date": "2022-10-13T04:00:00.00Z",
+        "date": "2022-10-14T04:00:00.00Z",
         "title": "Dolce Gabbanna Pasta",
         "expensiveProduct": {
             "name": "Pasta",
@@ -253,7 +274,7 @@
     },
     {
         "id": "frette-bathrobe",
-        "date": "2022-10-14T04:00:00.00Z",
+        "date": "2022-10-15T04:00:00.00Z",
         "title": "Frette Bathrobe",
         "expensiveProduct": {
             "name": "Bathrobe",
@@ -274,7 +295,7 @@
     },
     {
         "id": "saks-dog-jacket",
-        "date": "2022-10-15T04:00:00.00Z",
+        "date": "2022-10-16T04:00:00.00Z",
         "title": "Saks Fifth Avenue Dog Jacket",
         "expensiveProduct": {
             "name": "Biker Faux Leather Dog Jacket",
