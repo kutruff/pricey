@@ -226,10 +226,10 @@
             "sellerId": "amazon",
             "name": "Hydro Flask",
             "storePageUrl": "https://www.amazon.com/Hydro-Flask-Around-Tumbler-Closeable/dp/B0B4FPF3NH/ref=sr_1_5",
-            "imageUrl": "https://m.media-amazon.com/images/I/51KbT+OA25L._AC_SY300_SX300_.jpg",
+            "imageUrl": "https://m.media-amazon.com/images/I/61xVfT1lH6L._AC_SX679_.jpg",
             "price": 27.99
         }
-    },    
+    },
     {
         "id": "prada-paperclip",
         "date": "2022-10-13T04:00:00.00Z",
