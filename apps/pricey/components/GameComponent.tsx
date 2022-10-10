@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
+import { event } from '../analytics';
 import { Game, getNextUpdateTime, Product } from '../app';
 import CountdownClock from './Clock';
 
@@ -85,6 +86,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
     const onShareClick = () => {
         navigator.clipboard.writeText(getShareText(isTodaysGame ? undefined : game.id, game.expensiveProduct.price, state.guesses));
         setHasShared(true);
+        event({ action: 'share', params: { event_label: game.id, event_category: 'game_results_copied' } });
     };
 
     const handleSubmit = (event: any) => {
@@ -93,6 +95,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
         if (value) {
             setCurrentGuess('');
             setState({ ...state, guesses: [...state.guesses, value] });
+            event({ action: 'price_guess', params: { event_label: game.id, event_category: 'gameplay' } });
         }
     };
 
@@ -119,14 +122,13 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                 <Grid item>
                     <Paper sx={{ p: 1 }}>
                         <Grid container justifyContent='center'>
-                            <Link href={'/'} passHref>
+                            <Link href={'/'} passHref onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>
                                 <Button variant='contained'>See today&apos;s game</Button>
                             </Link>
                         </Grid>
                     </Paper>
                 </Grid>
             }
-
             <Grid item>
                 <Card >
                     <Grid sx={{ mt: 1 }} container justifyContent="center">
@@ -203,7 +205,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                     <Grid item >
                         <Paper sx={{ display: 'flex', p: 1, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
-                                <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)}>
+                                <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={() => event({ action: 'visit_sensible_product', params: { event_label: game.id, event_category: 'links' } })}>
                                     <Button fullWidth variant="contained" color="secondary" >See Sensible Amazon Item</Button>
                                 </MaterialUiLink>
                             </Box>
@@ -211,7 +213,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                                 <Typography >vs.</Typography>
                             </Box>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
-                                <MaterialUiLink href={game.expensiveProduct.storePageUrl}>
+                                <MaterialUiLink href={game.expensiveProduct.storePageUrl} onClick={() => event({ action: 'visit_expensive_product', params: { event_label: game.id, event_category: 'links' } })}>
                                     <Button fullWidth variant="contained" color="secondary" >{`See ${game.expensiveProduct.seller}`}</Button>
                                 </MaterialUiLink>
                             </Box>
@@ -234,7 +236,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                                         </Box>
                                     </>
                                 ) : (
-                                    <Link href={'/'} passHref>
+                                    <Link href={'/'} passHref onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>
                                         <Button variant='contained'>See today&apos;s game</Button>
                                     </Link>
                                 )}

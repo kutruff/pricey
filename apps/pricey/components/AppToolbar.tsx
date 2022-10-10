@@ -5,6 +5,7 @@ import Link from 'next/link';
 import BasicModal from './BasicModal';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { FC } from 'react';
+import { event } from '../analytics';
 
 type AppToolbarProps = AppBarProps & {
     onChangeTheme: () => void;
@@ -34,7 +35,7 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
                         <span style={{ flexBasis: 50 }} />
 
                         <Box sx={{ display: 'flex' }}>
-                            <Link href={'/archive'} passHref>
+                            <Link href={'/archive'} passHref onClick={() => eventnt({ action: 'toolbar_goto_archive', params: { event_label: 'open archive', event_category: 'links' } })}>
                                 <IconButton><CalendarTodayIcon /></IconButton>
                             </Link>
                             <HelpModal />
