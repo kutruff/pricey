@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 import { event } from '../analytics';
-import { Game, getNextUpdateTime, Product } from '../app';
+import { Game, getNextUpdateTime } from '../app';
 import CountdownClock from './Clock';
 
 const parseGuess = (value: string) => {
@@ -122,8 +122,8 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                 <Grid item>
                     <Paper sx={{ p: 1 }}>
                         <Grid container justifyContent='center'>
-                            <Link href={'/'} passHref onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>
-                                <Button variant='contained'>See today&apos;s game</Button>
+                            <Link href={'/'} passHref >
+                                <Button variant='contained' onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>See today&apos;s game</Button>
                             </Link>
                         </Grid>
                     </Paper>
@@ -222,7 +222,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                     <Grid item>
                         <Paper sx={{ p: 1 }}>
                             <Typography align="center" variant="h6">What normal people get.</Typography>
-                            <NormalProduct product={game.normalProduct} />
+                            <NormalProduct game={game} />
                         </Paper>
                     </Grid>
                     <Grid item>
@@ -236,8 +236,8 @@ const GameComponent: FC<GameComponentProps> = ({ game, isTodaysGame }) => {
                                         </Box>
                                     </>
                                 ) : (
-                                    <Link href={'/'} passHref onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>
-                                        <Button variant='contained'>See today&apos;s game</Button>
+                                    <Link href={'/'} passHref >
+                                        <Button variant='contained' onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>See today&apos;s game</Button>
                                     </Link>
                                 )}
                             </Box>
@@ -299,21 +299,21 @@ export const GuessRange: FC<GameResultsProps> = ({ guesses }) => {
 };
 
 export interface NormalProductProps {
-    product: Product,
+    game: Game,
 }
 
-export const NormalProduct: FC<NormalProductProps> = ({ product }) => {
+export const NormalProduct: FC<NormalProductProps> = ({ game }) => {
     return (
         <Card sx={{ mt: 1 }} elevation={2}>
-            <MaterialUiLink href={getAffiliateLink(product.storePageUrl)}>
+            <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={() => event({ action: 'visit_sensible_product', params: { event_label: game.id, event_category: 'links' } })}>
                 <Grid sx={{ mt: 1 }} container justifyContent="center">
                     <Grid item>
-                        <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={product.imageUrl} />
+                        <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.normalProduct.imageUrl} />
                     </Grid>
                 </Grid>
                 <CardContent sx={{ mt: 0, '&:last-child': { pb: 0 } }}>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {product.name}
+                        {game.normalProduct.name}
                     </Typography>
                 </CardContent>
             </MaterialUiLink>

@@ -35,8 +35,8 @@ export function AppToolbar(props: AppToolbarProps): JSX.Element {
                         <span style={{ flexBasis: 50 }} />
 
                         <Box sx={{ display: 'flex' }}>
-                            <Link href={'/archive'} passHref onClick={() => eventnt({ action: 'toolbar_goto_archive', params: { event_label: 'open archive', event_category: 'links' } })}>
-                                <IconButton><CalendarTodayIcon /></IconButton>
+                            <Link href={'/archive'} passHref>
+                                <IconButton onClick={() => event({ action: 'toolbar_goto_archive', params: { event_label: 'open archive', event_category: 'links' } })}><CalendarTodayIcon /></IconButton>
                             </Link>
                             <HelpModal />
                         </Box>
