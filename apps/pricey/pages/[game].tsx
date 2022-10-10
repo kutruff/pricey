@@ -5,7 +5,7 @@ import Head from 'next/head';
 import GameComponent, { GameComponentProps } from '../components/GameComponent';
 
 const Page: NextPage<GameComponentProps> = (props) => {
-    if(!props.game){
+    if (!props.game) {
         return <Typography>404</Typography>;
     }
     return (
