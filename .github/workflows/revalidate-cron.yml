@@ -2,7 +2,7 @@ name: revalidate-cron
 
 on:
   schedule:
-    - cron: '2 4,5 * * *'
+    - cron: "1 4,5,12 * * *"
 jobs:
   cron:
     runs-on: ubuntu-latest
