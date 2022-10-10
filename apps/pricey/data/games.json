@@ -210,8 +210,29 @@
         }
     },
     {
+        "id": "prada-paperclip",
+        "date": "2022-10-13T04:00:00.00Z",
+        "title": "Prada Paperclip",
+        "expensiveProduct": {
+            "name": "Paperclip money clip",
+            "seller": "Prada",
+            "sellerId": "prada",
+            "storePageUrl": "https://www.prada.com/us/en/products.Money_clip.2RC001_UGB_F0118.html",
+            "imageUrl": "https://www.prada.com/content/dam/pradanux_products/2/2RC/2RC001/UGBF0118/2RC001_UGB_F0118_SLF.png/jcr:content/renditions/cq5dam.web.hebebed.1000.1000.square.jpg",
+            "price": 525
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Paper Clips",
+            "storePageUrl": "https://www.amazon.com/Medium-Paperclips-Office-School-Personal/dp/B07F7RQVKW/ref=sr_1_2_sspa",
+            "imageUrl": "https://m.media-amazon.com/images/I/71HbnGv1w6L._AC_SX679_.jpg",
+            "price": 14.99
+        }
+    },
+    {
         "id": "frette-bathrobe",
-        "date": "2022-10-12T04:00:00.00Z",
+        "date": "2022-10-14T04:00:00.00Z",
         "title": "Frette Bathrobe",
         "expensiveProduct": {
             "name": "Bathrobe",
@@ -232,7 +253,7 @@
     },
     {
         "id": "saks-dog-jacket",
-        "date": "2022-10-13T04:00:00.00Z",
+        "date": "2022-10-15T04:00:00.00Z",
         "title": "Saks Fifth Avenue Dog Jacket",
         "expensiveProduct": {
             "name": "Biker Faux Leather Dog Jacket",
