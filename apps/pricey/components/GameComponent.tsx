@@ -211,8 +211,8 @@ const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGam
                     <Grid item >
                         <Paper sx={{ display: 'flex', p: 1, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
-                                <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={e => onVisitSensibleProduct(e, getAffiliateLink(game.normalProduct.storePageUrl), game)}>
-                                    <Button fullWidth variant="contained" color="secondary" >See Sensible Amazon Item</Button>
+                                <MaterialUiLink href={game.normalProduct.storePageUrl} onClick={e => onVisitSensibleProduct(e, game.normalProduct.storePageUrl, game)}>
+                                    <Button fullWidth variant="contained" color="secondary" >See Sensible Item at Amazon</Button>
                                 </MaterialUiLink>
                             </Box>
                             <Box sx={{ flexShrink: 1 }}>
@@ -268,12 +268,6 @@ const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGam
 
 export default GameComponent;
 
-function getAffiliateLink(link: string) {
-    const url = new URL(link);
-    url.searchParams.set('tag', process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG as string);
-    return url.toString();
-}
-
 interface GameResultsProps {
     actualPrice: number,
     guesses: number[],
@@ -322,18 +316,11 @@ export interface NormalProductProps {
 export const NormalProduct: FC<NormalProductProps> = ({ game }) => {
     return (
         <Card sx={{ mt: 1 }} elevation={2}>
-            <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={e => onVisitSensibleProduct(e, getAffiliateLink(game.normalProduct.storePageUrl), game)}>
-                <Grid sx={{ mt: 1 }} container justifyContent="center">
-                    <Grid item>
-                        <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.normalProduct.imageUrl} />
-                    </Grid>
+            <Grid sx={{ mt: 1 }} container justifyContent="center">
+                <Grid item>
+                    <Box sx={{ borderRadius: '10px' }} dangerouslySetInnerHTML={{ __html: game.normalProduct.imageUrl }} />
                 </Grid>
-                <CardContent sx={{ mt: 0, '&:last-child': { pb: 0 } }}>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        {game.normalProduct.name}
-                    </Typography>
-                </CardContent>
-            </MaterialUiLink>
+            </Grid>
         </Card >
     );
 };
