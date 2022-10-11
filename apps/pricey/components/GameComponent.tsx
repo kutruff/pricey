@@ -137,12 +137,12 @@ const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGam
             }
             <Grid item>
                 <Card >
-                    <Grid sx={{ mt: 1 }} container justifyContent="center">
-                        <Grid item>
-                            <Box component="img" sx={{ borderRadius: '10px', height: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
+                    <CardContent sx={{ mt: 0, '&:last-child': { pb: 1, pt: 1 } }}>
+                        <Grid container justifyContent="center">
+                            <Grid item>
+                                <Box component="img" sx={{ borderRadius: '10px', height: 200 }} alt="expensive product image" src={game.expensiveProduct.imageUrl} />
+                            </Grid>
                         </Grid>
-                    </Grid>
-                    <CardContent sx={{ mt: 0, '&:last-child': { pb: 1 } }}>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                             {game.expensiveProduct.seller}
                         </Typography>
