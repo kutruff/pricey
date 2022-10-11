@@ -45,8 +45,8 @@ export interface GameComponentProps {
 }
 
 const onVisitSensibleProduct = (game: Game) => {
-    event({ action: 'visit_sensible_product', params: { event_label: game.id, event_category: 'links' } });
     report_conversion();
+    event({ action: 'visit_sensible_product', params: { event_label: game.id, event_category: 'links' } });
 };
 
 const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGame }) => {
