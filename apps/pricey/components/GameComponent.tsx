@@ -248,12 +248,12 @@ const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGam
                             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center' }}>
                                 {previousGame && (
                                     <Link href={`/${previousGame.id}`} passHref >
-                                        <Button variant='contained' onClick={() => event({ action: 'visit_previous_game', params: { event_label: game.id, event_category: 'links' } })}>Play previous day</Button>
+                                        <Button variant='contained' sx={{ textAlign: 'center' }} onClick={() => event({ action: 'visit_previous_game', params: { event_label: game.id, event_category: 'links' } })}>Play previous day</Button>
                                     </Link>)
                                 }
                                 {!isTodaysGame && (
                                     <Link href={'/'} passHref >
-                                        <Button variant='contained' onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>Play today&apos;s game</Button>
+                                        <Button variant='contained' sx={{ textAlign: 'center' }} onClick={() => event({ action: 'visit_todays_game', params: { event_label: game.id, event_category: 'links' } })}>Play today&apos;s game</Button>
                                     </Link>
                                 )}
                             </Box>
