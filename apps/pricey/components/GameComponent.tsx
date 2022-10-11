@@ -44,8 +44,8 @@ export interface GameComponentProps {
     isTodaysGame: boolean
 }
 
-const onVisitSensibleProduct = (game: Game) => {
-    report_conversion();
+const onVisitSensibleProduct = (e: any, url: string, game: Game) => {
+    report_conversion(e, url);
     event({ action: 'visit_sensible_product', params: { event_label: game.id, event_category: 'links' } });
 };
 
@@ -86,7 +86,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGam
         const value = event.target.value;
 
         setCurrentGuess(value);
-        setHasError(value && !parseGuess(value));
+        setHasError(!!value && !parseGuess(value));
     };
 
     const onShareClick = () => {
@@ -211,7 +211,7 @@ const GameComponent: FC<GameComponentProps> = ({ game, previousGame, isTodaysGam
                     <Grid item >
                         <Paper sx={{ display: 'flex', p: 1, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'nowrap', gap: 1 }}>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
-                                <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={() => onVisitSensibleProduct(game)}>
+                                <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={e => onVisitSensibleProduct(e, getAffiliateLink(game.normalProduct.storePageUrl), game)}>
                                     <Button fullWidth variant="contained" color="secondary" >See Sensible Amazon Item</Button>
                                 </MaterialUiLink>
                             </Box>
@@ -322,7 +322,7 @@ export interface NormalProductProps {
 export const NormalProduct: FC<NormalProductProps> = ({ game }) => {
     return (
         <Card sx={{ mt: 1 }} elevation={2}>
-            <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={() => onVisitSensibleProduct(game)}>
+            <MaterialUiLink href={getAffiliateLink(game.normalProduct.storePageUrl)} onClick={e => onVisitSensibleProduct(e, getAffiliateLink(game.normalProduct.storePageUrl), game)}>
                 <Grid sx={{ mt: 1 }} container justifyContent="center">
                     <Grid item>
                         <Box component="img" sx={{ borderRadius: '10px', maxHeight: 200 }} alt="expensive product image" src={game.normalProduct.imageUrl} />

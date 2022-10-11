@@ -10,17 +10,25 @@ export const event = ({ action, params }: any) => {
     (window as any).gtag('event', action, params);
 };
 
-export function report_conversion() {
-    // e.preventDefault();
+export function report_conversion(e: any, url: string) {
+    e.preventDefault();
+    let hasSubmitted = false;
 
-    // const callback = function () {
-    //     if (typeof (url) !== 'undefined') {
-    //         window.location = url as any;
-    //     }
-    // };
+    const callback = () => {
+        if (hasSubmitted) {
+            return;
+        }
+        hasSubmitted = true;
+        if (typeof (url) !== 'undefined') {
+            window.location = url as any;
+        }
+    };
+
+    setTimeout(callback, 1000);
+
+
     (window as any).gtag('event', 'conversion', {
         'send_to': 'AW-11000944639/8OR-CK-q1eQDEP-v1P0o',
-        // 'event_callback': callback
+        'event_callback': callback
     });
-    // return false;
 }
