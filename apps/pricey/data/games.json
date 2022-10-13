@@ -252,29 +252,8 @@
         }
     },
     {
-        "id": "dolce-gabbana-pasta",
-        "date": "2022-10-14T04:00:00.00Z",
-        "title": "Dolce Gabbanna Pasta",
-        "expensiveProduct": {
-            "name": "Pasta",
-            "seller": "Dolce Gabbanna",
-            "sellerId": "dolce-gabbanna",
-            "storePageUrl": "https://us.dolcegabbana.com/en/foodandbeverage/food/pasta/special-edition---gift-box-made-of-5-types-of-pasta-and-dolceandgabbana-american-placemats-multicolor-PS100URES1083000.html?cgid=food-and-beverage-pasta",
-            "imageUrl": "https://us.dolcegabbana.com/dw/image/v2/BGRP_PRD/on/demandware.static/-/Sites-15/default/dwba92bf21/images/zoom/PS100URES10_83000_1.jpg?sw=640&sh=816&sm=fit",
-            "price": 155
-        },
-        "normalProduct": {
-            "seller": "Amazon",
-            "sellerId": "amazon",
-            "name": "Barilla Pasta",
-            "storePageUrl": "https://amzn.to/3COxJGd",
-            "imageUrl": "<a href=\"https:\/\/www.amazon.com\/Barilla-Cellentani-Pasta-16-oz\/dp\/B00FR6XR9S?&linkCode=li3&tag=kutruffllc-20&linkId=b5eee547672c7e14ac22ee09c195efda&language=en_US&ref_=as_li_ss_il\" target=\"_blank\"><img border=\"0\" src=\"\/\/ws-na.amazon-adsystem.com\/widgets\/q?_encoding=UTF8&ASIN=B00FR6XR9S&Format=_SL250_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=kutruffllc-20&language=en_US\" ><\/a><img src=\"https:\/\/ir-na.amazon-adsystem.com\/e\/ir?t=kutruffllc-20&language=en_US&l=li3&o=1&a=B00FR6XR9S\" width=\"1\" height=\"1\" border=\"0\" alt=\"\" style=\"border:none !important; margin:0px !important;\" \/>",
-            "price": 1.99
-        }
-    },
-    {
         "id": "loro-piana-hoodie",
-        "date": "2022-10-15T04:00:00.00Z",
+        "date": "2022-10-14T04:00:00.00Z",
         "title": "Loro Piana Hoodie",
         "expensiveProduct": {
             "name": "Hoodie",
@@ -294,8 +273,50 @@
         }
     },
     {
+        "id": "dolce-gabbana-pasta",
+        "date": "2022-10-15T04:00:00.00Z",
+        "title": "Dolce Gabbanna Pasta",
+        "expensiveProduct": {
+            "name": "Pasta",
+            "seller": "Dolce Gabbanna",
+            "sellerId": "dolce-gabbanna",
+            "storePageUrl": "https://us.dolcegabbana.com/en/foodandbeverage/food/pasta/special-edition---gift-box-made-of-5-types-of-pasta-and-dolceandgabbana-american-placemats-multicolor-PS100URES1083000.html?cgid=food-and-beverage-pasta",
+            "imageUrl": "https://us.dolcegabbana.com/dw/image/v2/BGRP_PRD/on/demandware.static/-/Sites-15/default/dwba92bf21/images/zoom/PS100URES10_83000_1.jpg?sw=640&sh=816&sm=fit",
+            "price": 155
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Barilla Pasta",
+            "storePageUrl": "https://amzn.to/3COxJGd",
+            "imageUrl": "<a href=\"https:\/\/www.amazon.com\/Barilla-Cellentani-Pasta-16-oz\/dp\/B00FR6XR9S?&linkCode=li3&tag=kutruffllc-20&linkId=b5eee547672c7e14ac22ee09c195efda&language=en_US&ref_=as_li_ss_il\" target=\"_blank\"><img border=\"0\" src=\"\/\/ws-na.amazon-adsystem.com\/widgets\/q?_encoding=UTF8&ASIN=B00FR6XR9S&Format=_SL250_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=kutruffllc-20&language=en_US\" ><\/a><img src=\"https:\/\/ir-na.amazon-adsystem.com\/e\/ir?t=kutruffllc-20&language=en_US&l=li3&o=1&a=B00FR6XR9S\" width=\"1\" height=\"1\" border=\"0\" alt=\"\" style=\"border:none !important; margin:0px !important;\" \/>",
+            "price": 1.99
+        }
+    },
+    {
+        "id": "alexander-mcqueen-fanny-pack",
+        "date": "2022-10-16T04:00:00.00Z",
+        "title": "Alexander McQueen Fanny Pack",
+        "expensiveProduct": {
+            "name": "Belt Bag (Fanny Pack)",
+            "seller": "Alexander McQueen",
+            "sellerId": "alexander-mcqueen",
+            "storePageUrl": "https://www.alexandermcqueen.com/en-us/biker-belt-bag-7108511AAJL1000.html",
+            "imageUrl": "https://amq-mcq.dam.kering.com/m/1f2e9041381dc5c4/Large-7108511AAJL1000_F.jpg?v=1",
+            "price": 1250
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Fanny Pack",
+            "storePageUrl": "https://amzn.to/3TfP4NF",
+            "imageUrl": "<a href=\"https:\/\/www.amazon.com\/Fashion-Waterproof-Adjustable-Running-2-Black\/dp\/B089CR15VD?crid=1YDVBYSERHZRN&keywords=fanny+pack&qid=1665634770&qu=eyJxc2MiOiI3LjgwIiwicXNhIjoiNy40OCIsInFzcCI6IjYuODIifQ%3D%3D&sprefix=fanny+pack%2Caps%2C73&sr=8-8&linkCode=li3&tag=kutruffllc-20&linkId=4379acb221dfc9b64a3f299ab6c0b68e&language=en_US&ref_=as_li_ss_il\" target=\"_blank\"><img border=\"0\" src=\"\/\/ws-na.amazon-adsystem.com\/widgets\/q?_encoding=UTF8&ASIN=B089CR15VD&Format=_SL250_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=kutruffllc-20&language=en_US\" ><\/a><img src=\"https:\/\/ir-na.amazon-adsystem.com\/e\/ir?t=kutruffllc-20&language=en_US&l=li3&o=1&a=B089CR15VD\" width=\"1\" height=\"1\" border=\"0\" alt=\"\" style=\"border:none !important; margin:0px !important;\" \/>",
+            "price": 7.99
+        }
+    },
+    {
         "id": "frette-bathrobe",
-        "date": "2022-10-1T04:00:00.00Z",
+        "date": "2022-10-17T04:00:00.00Z",
         "title": "Frette Bathrobe",
         "expensiveProduct": {
             "name": "Bathrobe",
