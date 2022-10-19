@@ -378,6 +378,27 @@
         }
     },
     {
+        "id": "alexander-mcqueen-sock-boots",
+        "date": "2022-10-20T04:00:00.00Z",
+        "title": "Alexander McQueen Sock Boot",
+        "expensiveProduct": {
+            "name": "Sock Boot",
+            "seller": "Alexander McQueen",
+            "sellerId": "alexander-mcqueen",
+            "storePageUrl": "https://www.alexandermcqueen.com/en-us/shoes/mcqueen-graffiti-knit-tread-slick-boot-705671W4TV19787.html",
+            "imageUrl": "https://amq-mcq.dam.kering.com/m/7e0715be90514508/Large-705671W4TV19787_R.jpg?v=1",
+            "price": 990
+        },
+        "normalProduct": {
+            "seller": "Amazon",
+            "sellerId": "amazon",
+            "name": "Boot",
+            "storePageUrl": "https://amzn.to/3D9dbZm",
+            "imageUrl": "<a href=\"https:\/\/www.amazon.com\/Amazon-Essentials-Womens-Collins-Combat\/dp\/B07PM82SW4?crid=26NI3TV9ASE9F&keywords=boots&qid=1666218898&qu=eyJxc2MiOiIxMi43NCIsInFzYSI6IjExLjk2IiwicXNwIjoiMTAuOTIifQ%3D%3D&sprefix=boots%2Caps%2C72&sr=8-9&linkCode=li3&tag=kutruffllc-20&linkId=3d3257348d8b2bb629bcf3129b057a8e&language=en_US&ref_=as_li_ss_il\" target=\"_blank\"><img border=\"0\" src=\"\/\/ws-na.amazon-adsystem.com\/widgets\/q?_encoding=UTF8&ASIN=B07PM82SW4&Format=_SL250_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=kutruffllc-20&language=en_US\" ><\/a><img src=\"https:\/\/ir-na.amazon-adsystem.com\/e\/ir?t=kutruffllc-20&language=en_US&l=li3&o=1&a=B07PM82SW4\" width=\"1\" height=\"1\" border=\"0\" alt=\"\" style=\"border:none !important; margin:0px !important;\" \/>",
+            "price": 20.99
+        }
+    },
+    {
         "id": "saks-dog-jacket",
         "date": "2023-1-2T04:00:00.00Z",
         "title": "Saks Fifth Avenue Dog Jacket",
