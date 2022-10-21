@@ -399,24 +399,24 @@
         }
     },
     {
-        "id": "saks-dog-jacket",
-        "date": "2023-1-2T04:00:00.00Z",
-        "title": "Saks Fifth Avenue Dog Jacket",
+        "id": "saks-dragonfly",
+        "date": "2022-10-21T04:00:00.00Z",
+        "title": "Saks dragon fly",
         "expensiveProduct": {
-            "name": "Biker Faux Leather Dog Jacket",
-            "seller": "Saks Fifth Avenue",
+            "name": "Dragon Fly Figurine",
+            "seller": "Llardo",
             "sellerId": "saks",
-            "storePageUrl": "https://www.saksfifthavenue.com/product/moschino-biker-faux-leather-dog-jacket-0400015291868.html?dwvar_0400015291868_color=BLACK",
-            "imageUrl": "https://image.s5a.com/is/image/saks/0400015291868_A1?wid=984&hei=1312&qlt=90&resMode=sharp2&op_usm=0.9,1.0,8,0",
-            "price": 645
+            "storePageUrl": "https://www.saksfifthavenue.com/product/lladro-awesome-insects-dragon-fly-figurine-0400014737700.html?dwvar_0400014737700_color=WHITE",
+            "imageUrl": "https://image.s5a.com/is/image/saks/0400014737700_WHITE?wid=984&hei=1312&qlt=90&resMode=sharp2&op_usm=0.9,1.0,8,0",
+            "price": 1235
         },
         "normalProduct": {
             "seller": "Amazon",
             "sellerId": "amazon",
-            "name": "Dog Leather Motorcycle Jacket",
-            "storePageUrl": "https://amzn.to/3RUuMIH",
-            "imageUrl": "<a href=\"https:\/\/www.amazon.com\/dp\/B07HHZNK56?&linkCode=li3&tag=kutruffllc-20&linkId=a95f081d9d9d3bcb5ee8bfcfa63a83e7&language=en_US&ref_=as_li_ss_il\" target=\"_blank\"><img border=\"0\" src=\"\/\/ws-na.amazon-adsystem.com\/widgets\/q?_encoding=UTF8&ASIN=B07HHZNK56&Format=_SL250_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=kutruffllc-20&language=en_US\" ><\/a><img src=\"https:\/\/ir-na.amazon-adsystem.com\/e\/ir?t=kutruffllc-20&language=en_US&l=li3&o=1&a=B07HHZNK56\" width=\"1\" height=\"1\" border=\"0\" alt=\"\" style=\"border:none !important; margin:0px !important;\" \/>",
-            "price": 22.99
+            "name": "Dragonfly",
+            "storePageUrl": "https://amzn.to/3TDf99B",
+            "imageUrl": "<a href=\"https:\/\/www.amazon.com\/Bbiamsleep-Dragonfly-Figurine-Realistic-Ornament\/dp\/B095WLV32Y?crid=351D4KOJXAH71&keywords=dragonfly+figurine&qid=1666321546&qu=eyJxc2MiOiI1LjY0IiwicXNhIjoiNC44MyIsInFzcCI6IjQuMTYifQ%3D%3D&sprefix=dragonfly+figurine%2Caps%2C69&sr=8-7&linkCode=li3&tag=kutruffllc-20&linkId=fa61f226aa8a42305ab8c0a589956d1a&language=en_US&ref_=as_li_ss_il\" target=\"_blank\"><img border=\"0\" src=\"\/\/ws-na.amazon-adsystem.com\/widgets\/q?_encoding=UTF8&ASIN=B095WLV32Y&Format=_SL250_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=kutruffllc-20&language=en_US\" ><\/a><img src=\"https:\/\/ir-na.amazon-adsystem.com\/e\/ir?t=kutruffllc-20&language=en_US&l=li3&o=1&a=B095WLV32Y\" width=\"1\" height=\"1\" border=\"0\" alt=\"\" style=\"border:none !important; margin:0px !important;\" \/>",
+            "price": 0.99
         }
     }
 ]
